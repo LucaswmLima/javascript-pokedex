@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/favicon/faviconPokeball.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/script.js"></script>
+    <title>Pokédex</title>
+
+</head>
+
+<body>
+
+    <main class="main">
+
+        <img src="" alt="" class="pokemonImage">
+
+        <div class="rightDisplayStatus">
+
+            <h1 class="pokemonData">
+
+                <span class="pokemonNumber"></span>
+                <span class="pokemonName"></span>
+                <span class="pokemonAbility"></span>
+                <div class="pokemonStats">
+                    <div class="statFull">
+                        <p class="flat-stat">HP: <span class="hpNumber"></span></p>
+                        <div class="stats-container">
+                            <div class="skills hp"></div>
+                        </div>
+                    </div>
+                    <div class="statFull">
+                        <p class="flat-stat">Attack: <span class="atkNumber"></span></p>
+                        <div class="stats-container">
+                            <div class="skills atk"></div>
+                        </div>
+                    </div>
+                    <div class="statFull">
+                        <p class="flat-stat">Defense: <span class="defNumber"></span></p>
+                        <div class="stats-container">
+                            <div class="skills def"></div>
+                        </div>
+                    </div>
+                    <div class="statFull">
+                    <p class="flat-stat">Sp. Atk: <span class="spAtkNumber"></span></p>
+                    <div class="stats-container">
+                        <div class="skills spAtk"></div>
+                    </div>
+                </div>
+                <div class="statFull">
+                <p class="flat-stat">Sp. Def: <span class="spDefNumber"></span></p>
+                <div class="stats-container">
+                    <div class="skills spDef"></div>
+                </div>
+        </div>
+        <div class="statFull">
+            <p class="flat-stat">Speed: <span class="speedNumber"></span></p>
+            <div class="stats-container">
+                <div class="skills speed"></div>
+            </div>
+        </div>
+        
+        <p class="total">Total: <span class="totalNumber"></span></p>
+
+        </div>
+        <span class="pokemonType"></span>
+        <span class="pokemonWeakness"></span>
+
+
+        </h1>
+
+        </div>
+
+        <div class="rightDisplayMoves">MOVES
+
+            <h1 class="pokemonData">
+
+                <span class="pokemonMoves"></span>
+
+            </h1>
+
+        </div>
+
+        <div class="rightDisplayEncounter">ENCOUNTERS
+
+            <h1 class="pokemonData">
+
+                <span class="pokemonEncounter"></span>
+
+            </h1>
+
+        </div>
+
+        <div class="leftDisplayBackGround">
+            <img src="./assets/pokedex/leftDisplayBackGround.png" alt="">
+        </div>
+
+        <form class="form">
+
+            <input type="search" class="inputSearch" placeholder="Name or Number" required>
+
+        </form>
+
+        <div class="buttons">
+
+            <button class="buttonLeft btn-prev" onclick="playAudio('./assets/sounds/buttonClickSound.mp3')"><img
+                    src="./assets/icons/prev.svg" alt="prev"></button>
+            <button class="buttonLeft btn-next" onclick="playAudio('./assets/sounds/buttonClickSound.mp3')"><img
+                    src="./assets/icons/next.svg" alt="next"></button>
+
+        </div>
+
+        <div class="buttons2">
+
+            <button class="buttonRight btn-stats"
+                onclick="playAudio('./assets/sounds/buttonClickSound.mp3')">Status</button>
+            <button class="buttonRight btn-moves"
+                onclick="playAudio('./assets/sounds/buttonClickSound.mp3')">Moves</button>
+            <button class="buttonRight btn-encounter"
+                onclick="playAudio('./assets/sounds/buttonClickSound.mp3')">Encounter</button>
+
+        </div>
+
+        <img src="./assets/pokedex/pokedex1.png" alt="pokedex" class="pokedex">
+
+    </main>
+
+</body>
+
+</html>
