@@ -207,7 +207,7 @@ main {
   width: 65%;
   border:  1px solid black;
   /* Full width */
-  background-color: rgb(173, 43, 43);
+  background-color: #ddd;
   /* Grey background */
 }
 
@@ -224,7 +224,7 @@ main {
 
 .hp {
   width: 0;
-  background-color: #FF0000;
+  background-color: #00ffd5;
 }
 
 .atk {
