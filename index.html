@@ -45,36 +45,36 @@
                         </div>
                     </div>
                     <div class="statFull">
-                    <p class="flat-stat">Sp. Atk: <span class="spAtkNumber"></span></p>
-                    <div class="stats-container">
-                        <div class="skills spAtk"></div>
+                        <p class="flat-stat">Sp. Atk: <span class="spAtkNumber"></span></p>
+                        <div class="stats-container">
+                            <div class="skills spAtk"></div>
+                        </div>
                     </div>
+                    <div class="statFull">
+                        <p class="flat-stat">Sp. Def: <span class="spDefNumber"></span></p>
+                        <div class="stats-container">
+                            <div class="skills spDef"></div>
+                        </div>
+                    </div>
+                    <div class="statFull">
+                        <p class="flat-stat">Speed: <span class="speedNumber"></span></p>
+                        <div class="stats-container">
+                            <div class="skills speed"></div>
+                        </div>
+                    </div>
+
+                    <p class="total">Total: <span class="totalNumber"></span></p>
+
                 </div>
-                <div class="statFull">
-                <p class="flat-stat">Sp. Def: <span class="spDefNumber"></span></p>
-                <div class="stats-container">
-                    <div class="skills spDef"></div>
-                </div>
-        </div>
-        <div class="statFull">
-            <p class="flat-stat">Speed: <span class="speedNumber"></span></p>
-            <div class="stats-container">
-                <div class="skills speed"></div>
-            </div>
-        </div>
-        
-        <p class="total">Total: <span class="totalNumber"></span></p>
-
-        </div>
-        <span class="pokemonType"></span>
-        <span class="pokemonWeakness"></span>
+                <span class="pokemonType"></span>
+                <span class="pokemonWeakness"></span>
 
 
-        </h1>
+            </h1>
 
         </div>
 
-        <div class="rightDisplayMoves">MOVES
+        <div class="rightDisplayMoves">
 
             <h1 class="pokemonData">
 
@@ -84,7 +84,18 @@
 
         </div>
 
-        <div class="rightDisplayEncounter">ENCOUNTERS
+
+        <div class="rightDisplayAbility">
+
+            <h1 class="pokemonData">
+
+                <span class="pokemonAbility"></span>
+
+            </h1>
+
+        </div>
+
+        <div class="rightDisplayEncounter">
 
             <h1 class="pokemonData">
 
@@ -106,21 +117,21 @@
 
         <div class="buttons">
 
-            <button class="buttonLeft btn-prev" onclick="playAudio('./assets/sounds/buttonClickSound.mp3')"><img
-                    src="./assets/icons/prev.svg" alt="prev"></button>
-            <button class="buttonLeft btn-next" onclick="playAudio('./assets/sounds/buttonClickSound.mp3')"><img
-                    src="./assets/icons/next.svg" alt="next"></button>
+            <button class="buttonLeft btn-prev"><img src="./assets/icons/prev.svg" alt="prev"></button>
+            <button class="buttonLeft btn-next"><img src="./assets/icons/next.svg" alt="next"></button>
 
         </div>
 
         <div class="buttons2">
 
-            <button class="buttonRight btn-stats"
-                onclick="playAudio('./assets/sounds/buttonClickSound.mp3')">Status</button>
-            <button class="buttonRight btn-moves"
-                onclick="playAudio('./assets/sounds/buttonClickSound.mp3')">Moves</button>
-            <button class="buttonRight btn-encounter"
-                onclick="playAudio('./assets/sounds/buttonClickSound.mp3')">Encounter</button>
+            <button class="buttonRight btn-stats"><p>Status</p></button>
+            <button class="buttonRight btn-ability"><p>Ability</p></button>
+
+        </div>
+        <div class="buttons3">
+
+            <button class="buttonRight btn-moves"><p>Moves</p></button>
+            <button class="buttonRight btn-encounter"><p>Encounter</p></button>
 
         </div>
 

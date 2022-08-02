@@ -8,9 +8,11 @@ const buttonNext = document.querySelector('.btn-next');
 const buttonStats = document.querySelector('.btn-stats');
 const buttonMoves = document.querySelector('.btn-moves');
 const buttonEncounter = document.querySelector('.btn-encounter');
+const buttonAbility = document.querySelector('.btn-ability');
 const rightDisplay1 = document.querySelector('.rightDisplayStatus');
 const rightDisplay2 = document.querySelector('.rightDisplayMoves');
 const rightDisplay3 = document.querySelector('.rightDisplayEncounter');
+const rightDisplay4 = document.querySelector('.rightDisplayAbility');
 const hpBar = document.querySelector('.hp');
 const atkBar = document.querySelector('.atk');
 const defBar = document.querySelector('.def');
@@ -40,6 +42,7 @@ const initializePokedex = function () {
     rightDisplay1.style.display = 'flex';
     rightDisplay2.style.display = 'none';
     rightDisplay3.style.display = 'none';
+    rightDisplay4.style.display = 'none';
 
 }
 
@@ -147,17 +150,42 @@ const rightDisplayFunctionStatus = function () {
     buttonStats.classList.add("buttonRightActive");
     buttonMoves.classList.remove("buttonRightActive");
     buttonEncounter.classList.remove("buttonRightActive");
+    buttonAbility.classList.remove("buttonRightActive");
     buttonStats.setAttribute('disabled', '')
     buttonMoves.removeAttribute('disabled', '')
     buttonEncounter.removeAttribute('disabled', '')
+    buttonAbility.removeAttribute('disabled', '')
     rightDisplay1.style.display = 'flex';
     rightDisplay2.style.display = 'none';
     rightDisplay3.style.display = 'none';
+    rightDisplay4.style.display = 'none';
 
 
 
 }
 buttonStats.addEventListener('click', rightDisplayFunctionStatus);
+
+// Change right display function to status
+const rightDisplayFunctionAbility = function () {
+    playAudio('./assets/sounds/buttonClickSound.mp3');
+    buttonStats.classList.remove("buttonRightActive");
+    buttonMoves.classList.remove("buttonRightActive");
+    buttonEncounter.classList.remove("buttonRightActive");
+    buttonAbility.classList.add("buttonRightActive");
+    buttonStats.removeAttribute('disabled', '')
+    buttonMoves.removeAttribute('disabled', '')
+    buttonEncounter.removeAttribute('disabled', '')
+    buttonAbility.setAttribute('disabled', '')
+    rightDisplay1.style.display = 'none';
+    rightDisplay2.style.display = 'none';
+    rightDisplay3.style.display = 'none';
+    rightDisplay4.style.display = 'flex';
+
+
+
+}
+buttonAbility.addEventListener('click', rightDisplayFunctionAbility);
+
 
 // Change right display function to moves
 const rightDisplayFunctionMoves = function () {
@@ -165,12 +193,15 @@ const rightDisplayFunctionMoves = function () {
     buttonMoves.classList.add("buttonRightActive");
     buttonStats.classList.remove("buttonRightActive");
     buttonEncounter.classList.remove("buttonRightActive");
+    buttonAbility.classList.remove("buttonRightActive");
     buttonStats.removeAttribute('disabled', '')
     buttonMoves.setAttribute('disabled', '')
     buttonEncounter.removeAttribute('disabled', '')
+    buttonAbility.removeAttribute('disabled', '')
     rightDisplay1.style.display = 'none';
     rightDisplay2.style.display = 'flex';
     rightDisplay3.style.display = 'none';
+    rightDisplay4.style.display = 'none';
 
 
 }
@@ -182,13 +213,15 @@ const rightDisplayFunctionEncounter = function () {
     buttonEncounter.classList.add("buttonRightActive");
     buttonStats.classList.remove("buttonRightActive");
     buttonMoves.classList.remove("buttonRightActive");
+    buttonAbility.classList.remove("buttonRightActive");
     buttonStats.removeAttribute('disabled', '')
     buttonMoves.removeAttribute('disabled', '')
     buttonEncounter.setAttribute('disabled', '')
+    buttonAbility.removeAttribute('disabled', '')
     rightDisplay1.style.display = 'none';
     rightDisplay2.style.display = 'none';
     rightDisplay3.style.display = 'flex';
-
+    rightDisplay4.style.display = 'none';
 
 }
 buttonEncounter.addEventListener('click', rightDisplayFunctionEncounter);
