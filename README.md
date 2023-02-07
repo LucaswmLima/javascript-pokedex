@@ -41,8 +41,7 @@ Foram utilizadas as seguintes ferramentas: HTML, CSS, Javascript, Rest API.
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/82186618?v=4" width="100px;" alt="Lucas Lima"/>
  <sub><b>Lucas William Martins Lima</b></sub><br>
  <sub><b>LinkedIn: https://www.linkedin.com/in/lucaswmlima</b></sub><br>
- <sub><b>Portifólio: https://portifolio-lucaswilliam.vercel.app/</b></sub><br>
- <sub><b>Github: https://github.com/lucaswmlima</b></sub>
- <br />
+ <sub><b>Portifólio: https://portifolio-lucaswilliam.vercel.app</b></sub><br>
+ <sub><b>Github: https://github.com/lucaswmlima</b></sub> 
  
 ---
