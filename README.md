@@ -4,7 +4,7 @@
 
 ## 💻 Sobre o projeto
 
-<p>Pokedex feita em Javascript com consumo de uma API para consulta dos dados</p>
+<p>Pokedex feita em Javascript com consumo de uma API para consulta dos dados.</p>
 
 ---
 
