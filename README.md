@@ -27,7 +27,7 @@
 
 ## 🚀 Como executar o projeto
 
-Abrir o link do projeto: https://lucaswmlima.github.io/javascript-pokedex/
+Acessar o link do projeto: https://lucaswmlima.github.io/javascript-pokedex/
 
 ---
 
