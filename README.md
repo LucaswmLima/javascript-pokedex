@@ -20,7 +20,7 @@
 ## 📷 Imagens do projeto
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Pokédex" title="Imagem - Pokédex, Pikachu" src="assets/github-images/pokedex-1.jpg" width="400px">
+  <img alt="Pokédex" title="Imagem - Pokédex, Pikachu" src="assets/github-images/pokedex-1.png" width="400px">
 </p>
 
 ---
