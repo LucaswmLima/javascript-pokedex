@@ -16,7 +16,7 @@
 <h3 align="center">Pokédex</h3>
 
   <p align="center">
-    An app for Pokedex that makes use of the RESTful POKE-API to gather data, providing accurate information, vivid images, and comprehensive statistics on Pokémon.
+    An app for Pokedex that makes use of the RESTful pokeapi to gather data, providing accurate information, vivid images, and comprehensive statistics on Pokémon.
     <br />
     <a href="https://github.com/lucaswmlima/javascript-pokedex"><strong>Explore the docs »</strong></a>
     <br />
