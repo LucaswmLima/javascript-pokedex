@@ -202,10 +202,11 @@ main {
 }
 
 .statFull {
-  width: 100%;
-  display: flex;
-  gap: 5%;
-  padding-bottom: 1%;
+      width: 100%;
+      display: flex;
+      /* gap: 5%; */
+      padding-bottom: 1%;
+      justify-content: space-between;
 }
 
 .pokemonStats{
@@ -217,16 +218,17 @@ main {
 }
 
 .flat-stat {
-  width: 30%;
+  width: 37%;
   display: flex;
   font-weight: 600;
-  font-size: clamp(4px, 5vw, 13px);
+  font-size: 60%;
   justify-content: space-between;
+  align-items: center;
 
 }
 
 .stats-container {
-  width: 65%;
+  width: 60%;
   border:  1px solid black;
   /* Full width */
   background-color: #ddd;
@@ -274,8 +276,12 @@ main {
   background-color: #F85888;
 }
 
-/* Media query para telas menores que 480px */
-@media only screen and (max-width: 480px) {
+/* Media query para telas menores que 600px */
+@media only screen and (max-width: 600px) {
+body {
+    height: 130vh;
+  }
+
 .pokedex-normal{
     display: none;
 }
@@ -304,10 +310,11 @@ main {
 .rightDisplayMoves,
 .rightDisplayEncounter,
 .rightDisplayAbility {
-  width: 32%;
-  height: 45%;
-  left: 35%;
-  bottom: -60%;
+  width: 66%;
+  height: 53%;
+  left: 17%;
+  bottom: -62%;
+  border: 1px solid black;
 }
 
 .buttons2 {
@@ -343,6 +350,22 @@ main {
   gap: 4%;
 }
 
+.flat-stat,.pokemonName,.pokemonNumber {
+  font-size: 1.1em
+}
+
+.pokedex-mobile-buttom{
+  background-color: #F23838;
+  width: 72.7%;
+  border: #000 1px solid;
+  border-radius: 20px;
+  height: 90%;
+  position: absolute;
+  left: 14%;
+  bottom: -75%;
+  z-index: -100;
+
+}
 
 
 }
