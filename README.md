@@ -13,19 +13,25 @@
 <br />
 <div align="center">
 
-<h3 align="center">Fast Food Site</h3>
+<h3 align="center">Pokédex</h3>
 
   <p align="center">
-    A Fast Food website with optimized design, responsive menus, and reservation features, emphasizing core functionalities for food platforms.
+    An app for Pokedex that makes use of the RESTful POKE-API to gather data, providing accurate information, vivid images, and comprehensive statistics on Pokémon.
     <br />
-    <a href="https://github.com/lucaswmlima/javascript-food-site"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/lucaswmlima/javascript-pokedex
+
+"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://javascript-food-site.vercel.app">View Demo</a>
+    <a href="https://lucaswmlima.github.io/javascript-pokedex/">View Demo</a>
     ·
-    <a href="https://github.com/lucaswmlima/javascript-food-site/issues">Report Bug</a>
+    <a href="https://github.com/lucaswmlima/javascript-pokedex
+
+/issues">Report Bug</a>
     ·
-    <a href="https://github.com/lucaswmlima/javascript-food-site/issues">Request Feature</a>
+    <a href="https://github.com/lucaswmlima/javascript-pokedex
+
+/issues">Request Feature</a>
   </p>
 </div>
 
@@ -61,8 +67,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://javascript-food-site.vercel.app)
-[![Product Name Screen Shot 2][product-screenshot2]](https://javascript-food-site.vercel.app)
+[![Product Name Screen Shot][product-screenshot]](https://lucaswmlima.github.io/javascript-pokedex/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -95,7 +100,9 @@ Downloading and installing Node.js and npm
 
 1. Clone the repo
    ```
-   git clone https://github.com/lucaswmlima/javascript-food-site.git
+   git clone https://github.com/lucaswmlima/javascript-pokedex
+
+.git
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -107,7 +114,9 @@ Downloading and installing Node.js and npm
 
 1. Navigate to the cloned directory
    ```
-   cd javascript-food-site
+   cd javascript-pokedex
+
+
    ```
 
 2. Start a local HTTP server using Node.js
@@ -128,11 +137,13 @@ Downloading and installing Node.js and npm
 ## Roadmap
 
 - [x] Front-end
-- [x] Menu script implementation
-- [x] Banner slider
-- [x] Responsiveness implementation
+- [x] RESTful API poke-api implementation
+- [x] Pokedex buttons actions
+- [ ] Responsiveness implementation
 
-See the [open issues](https://github.com/lucaswmlima/javascript-food-site/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/lucaswmlima/javascript-pokedex
+
+/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -174,21 +185,43 @@ Lucas William Martins Lima - lucaswilliamml@gmail.com - [LinkedIn][linkedin-url]
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/lucaswmlima/javascript-food-site.svg?style=for-the-badge
-[contributors-url]: https://github.com/lucaswmlima/javascript-food-site/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/lucaswmlima/javascript-food-site.svg?style=for-the-badge
-[forks-url]: https://github.com/lucaswmlima/javascript-food-site/network/members
-[stars-shield]: https://img.shields.io/github/stars/lucaswmlima/javascript-food-site.svg?style=for-the-badge
-[stars-url]: https://github.com/lucaswmlima/javascript-food-site/stargazers
-[issues-shield]: https://img.shields.io/github/issues/lucaswmlima/javascript-food-site.svg?style=for-the-badge
-[issues-url]: https://github.com/lucaswmlima/javascript-food-site/issues
-[license-shield]: https://img.shields.io/github/license/lucaswmlima/javascript-food-site.svg?style=for-the-badge
-[license-url]: https://github.com/lucaswmlima/javascript-food-site/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/lucaswmlima/javascript-pokedex
+
+.svg?style=for-the-badge
+[contributors-url]: https://github.com/lucaswmlima/javascript-pokedex
+
+/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/lucaswmlima/javascript-pokedex
+
+.svg?style=for-the-badge
+[forks-url]: https://github.com/lucaswmlima/javascript-pokedex
+
+/network/members
+[stars-shield]: https://img.shields.io/github/stars/lucaswmlima/javascript-pokedex
+
+.svg?style=for-the-badge
+[stars-url]: https://github.com/lucaswmlima/javascript-pokedex
+
+/stargazers
+[issues-shield]: https://img.shields.io/github/issues/lucaswmlima/javascript-pokedex
+
+.svg?style=for-the-badge
+[issues-url]: https://github.com/lucaswmlima/javascript-pokedex
+
+/issues
+[license-shield]: https://img.shields.io/github/license/lucaswmlima/javascript-pokedex
+
+.svg?style=for-the-badge
+[license-url]: https://github.com/lucaswmlima/javascript-pokedex
+
+/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/https://www.linkedin.com/in/lucaswmlima/
 [portfolio-url]: https://portfolio-lucaswilliam.vercel.app/#projects
-[product-screenshot]: https://github.com/LucaswmLima/javascript-food-site/assets/82186618/8253a548-fd62-4874-afae-c5e6e15c6b47
-[product-screenshot2]: https://github.com/LucaswmLima/javascript-food-site/blob/main/assets/readme-imgs/3.jpg?raw=true
+[product-screenshot]: https://github.com/LucaswmLima/javascript-pokedex/blob/main/assets/github-images/pokedex-1.png?raw=true8253a548-fd62-4874-afae-c5e6e15c6b47
+[product-screenshot2]: https://github.com/LucaswmLima/javascript-pokedex
+
+/blob/main/assets/readme-imgs/3.jpg?raw=true
 [HTML]: https://img.shields.io/badge/HTML-E44D26?style=for-the-badge&logo=html5&logoColor=white
 [HTML-url]: https://developer.mozilla.org/pt-BR/docs/Web/HTML
 [CSS]: https://img.shields.io/badge/CSS-2862E9?style=for-the-badge&logo=css3&logoColor=white
