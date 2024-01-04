@@ -62,15 +62,42 @@ main {
 .rightDisplayEncounter,
 .rightDisplayAbility {
   position: absolute;
-  z-index: -99;
+  z-index: 100;
   width: 32%;
-  height: 60%;
+  height: 48%;
   left: 59%;
-  bottom: 10%;
+  bottom: 22.2%;
   justify-content: center;
   display: flex;
+  overflow: auto;
+  border: #000 1px solid;
+  border-radius: 11px;
 
 
+}
+
+.rightDisplayMoves::-webkit-scrollbar {
+  width: 20px;
+}
+
+.rightDisplayMoves::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 20px;
+}
+
+.rightDisplayMoves::-webkit-scrollbar-thumb {
+  background-color: #3b3b3b;
+  border-radius: 20px;
+}
+
+.pokemonMoves{
+  white-space: pre-line;
+  font-size: .8em;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .rightDisplayStatus {
@@ -79,17 +106,17 @@ main {
 }
 
 .rightDisplayMoves {
-  background-color: rgb(92, 230, 0);
+  background-color: #BDDCE6;
 
 }
 
 .rightDisplayEncounter {
-  background-color: rgb(0, 156, 218);
+  background-color: #BDDCE6;
 
 }
 
 .rightDisplayAbility {
-  background-color: rgb(122, 69, 172);
+  background-color: #BDDCE6;
 
 }
 
@@ -104,6 +131,14 @@ main {
   display: flex;
   background-color: #fff;
 
+}
+
+
+.rightDisplayMoves.pokemonData {
+  white-space: pre-wrap;
+  max-height: 200px;
+  background-color: #6ab7f5;
+  /* Preserva quebras de linha */
 }
 
 .form {
@@ -315,6 +350,7 @@ body {
   left: 17%;
   bottom: -62%;
   border: 1px solid black;
+   
 }
 
 .buttons2 {

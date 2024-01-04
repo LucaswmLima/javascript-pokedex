@@ -27,6 +27,7 @@ const spAtkNumber = document.querySelector('.spAtkNumber');
 const spDefNumber = document.querySelector('.spDefNumber');
 const speedNumber = document.querySelector('.speedNumber');
 const totalNumber = document.querySelector('.totalNumber');
+const pokemonMoves = document.querySelector(".pokemonMoves");
 
 let serchedPokemon = 1;
 
@@ -102,6 +103,15 @@ const renderPokemon = async function (pokemon) {
             pokemonData['stats']['3']['base_stat'] +
             pokemonData['stats']['4']['base_stat'] + 
             pokemonData['stats']['5']['base_stat']
+        
+        // Moves
+        const moveList = Object.keys(pokemonData['moves']).map(
+          (moveNumber) => {
+            return pokemonData["moves"][moveNumber]['move']['name'];
+          }
+        );
+        console.log(moveList)
+        pokemonMoves.innerHTML = moveList.join("\n");
 
     } else {
         pokemonImage.style.display = 'none';
