@@ -1,144 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/favicon/faviconPokeball.png">
-    <link rel="stylesheet" href="./css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/favicon/faviconPokeball.png" />
+    <link rel="stylesheet" href="./css/style.css" />
     <script defer src="./js/script.js"></script>
     <title>Pokédex</title>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <main class="main">
+      <img src="" alt="" class="pokemonImage" />
 
-        <img src="" alt="" class="pokemonImage">
+      <div class="rightDisplayStatus">
+        <h1 class="pokemonData">
+          <span class="pokemonNumber"></span>
+          <span class="pokemonName"></span>
+          <span class="pokemonAbility"></span>
+          <div class="pokemonStats">
+            <div class="statFull">
+              <p class="flat-stat">HP: <span class="hpNumber"></span></p>
+              <div class="stats-container">
+                <div class="skills hp"></div>
+              </div>
+            </div>
+            <div class="statFull">
+              <p class="flat-stat">Attack: <span class="atkNumber"></span></p>
+              <div class="stats-container">
+                <div class="skills atk"></div>
+              </div>
+            </div>
+            <div class="statFull">
+              <p class="flat-stat">Defense: <span class="defNumber"></span></p>
+              <div class="stats-container">
+                <div class="skills def"></div>
+              </div>
+            </div>
+            <div class="statFull">
+              <p class="flat-stat">
+                Sp. Atk: <span class="spAtkNumber"></span>
+              </p>
+              <div class="stats-container">
+                <div class="skills spAtk"></div>
+              </div>
+            </div>
+            <div class="statFull">
+              <p class="flat-stat">
+                Sp. Def: <span class="spDefNumber"></span>
+              </p>
+              <div class="stats-container">
+                <div class="skills spDef"></div>
+              </div>
+            </div>
+            <div class="statFull">
+              <p class="flat-stat">Speed: <span class="speedNumber"></span></p>
+              <div class="stats-container">
+                <div class="skills speed"></div>
+              </div>
+            </div>
 
-        <div class="rightDisplayStatus">
+            <p class="total">Total: <span class="totalNumber"></span></p>
+          </div>
+          <span class="pokemonType"></span>
+          <span class="pokemonWeakness"></span>
+        </h1>
+      </div>
 
-            <h1 class="pokemonData">
+      <div class="rightDisplayMoves">
+        <h1 class="pokemonData">
+          <span class="pokemonMoves"></span>
+        </h1>
+      </div>
 
-                <span class="pokemonNumber"></span>
-                <span class="pokemonName"></span>
-                <span class="pokemonAbility"></span>
-                <div class="pokemonStats">
-                    <div class="statFull">
-                        <p class="flat-stat">HP: <span class="hpNumber"></span></p>
-                        <div class="stats-container">
-                            <div class="skills hp"></div>
-                        </div>
-                    </div>
-                    <div class="statFull">
-                        <p class="flat-stat">Attack: <span class="atkNumber"></span></p>
-                        <div class="stats-container">
-                            <div class="skills atk"></div>
-                        </div>
-                    </div>
-                    <div class="statFull">
-                        <p class="flat-stat">Defense: <span class="defNumber"></span></p>
-                        <div class="stats-container">
-                            <div class="skills def"></div>
-                        </div>
-                    </div>
-                    <div class="statFull">
-                        <p class="flat-stat">Sp. Atk: <span class="spAtkNumber"></span></p>
-                        <div class="stats-container">
-                            <div class="skills spAtk"></div>
-                        </div>
-                    </div>
-                    <div class="statFull">
-                        <p class="flat-stat">Sp. Def: <span class="spDefNumber"></span></p>
-                        <div class="stats-container">
-                            <div class="skills spDef"></div>
-                        </div>
-                    </div>
-                    <div class="statFull">
-                        <p class="flat-stat">Speed: <span class="speedNumber"></span></p>
-                        <div class="stats-container">
-                            <div class="skills speed"></div>
-                        </div>
-                    </div>
+      <div class="rightDisplayAbility">
+        <h1 class="pokemonData">
+          <span class="pokemonAbility"></span>
+        </h1>
+      </div>
 
-                    <p class="total">Total: <span class="totalNumber"></span></p>
+      <div class="rightDisplayEncounter">
+        <h1 class="pokemonData">
+          <span class="pokemonEncounter"></span>
+        </h1>
+      </div>
 
-                </div>
-                <span class="pokemonType"></span>
-                <span class="pokemonWeakness"></span>
+      <div class="leftDisplayBackGround">
+        <img src="./assets/pokedex/leftDisplayBackGround.png" alt="" />
+      </div>
 
+      <form class="form">
+        <input
+          type="search"
+          class="inputSearch"
+          placeholder="Name or Number"
+          required
+        />
+      </form>
 
-            </h1>
+      <div class="buttons">
+        <button class="buttonLeft btn-prev">
+          <img src="./assets/icons/prev.svg" alt="prev" />
+        </button>
+        <button class="buttonLeft btn-next">
+          <img src="./assets/icons/next.svg" alt="next" />
+        </button>
+      </div>
 
-        </div>
+      <div class="buttons2">
+        <button class="buttonRight btn-stats"><p>Status</p></button>
+        <button class="buttonRight btn-ability"><p>Ability</p></button>
+      </div>
+      <div class="buttons3">
+        <button class="buttonRight btn-moves"><p>Moves</p></button>
+        <button class="buttonRight btn-encounter"><p>Encounter</p></button>
+      </div>
 
-        <div class="rightDisplayMoves">
-
-            <h1 class="pokemonData">
-
-                <span class="pokemonMoves"></span>
-
-            </h1>
-
-        </div>
-
-
-        <div class="rightDisplayAbility">
-
-            <h1 class="pokemonData">
-
-                <span class="pokemonAbility"></span>
-
-            </h1>
-
-        </div>
-
-        <div class="rightDisplayEncounter">
-
-            <h1 class="pokemonData">
-
-                <span class="pokemonEncounter"></span>
-
-            </h1>
-
-        </div>
-
-        <div class="leftDisplayBackGround">
-            <img src="./assets/pokedex/leftDisplayBackGround.png" alt="">
-        </div>
-
-        <form class="form">
-
-            <input type="search" class="inputSearch" placeholder="Name or Number" required>
-
-        </form>
-
-        <div class="buttons">
-
-            <button class="buttonLeft btn-prev"><img src="./assets/icons/prev.svg" alt="prev"></button>
-            <button class="buttonLeft btn-next"><img src="./assets/icons/next.svg" alt="next"></button>
-
-        </div>
-
-        <div class="buttons2">
-
-            <button class="buttonRight btn-stats"><p>Status</p></button>
-            <button class="buttonRight btn-ability"><p>Ability</p></button>
-
-        </div>
-        <div class="buttons3">
-
-            <button class="buttonRight btn-moves"><p>Moves</p></button>
-            <button class="buttonRight btn-encounter"><p>Encounter</p></button>
-
-        </div>
-
-        <img src="./assets/pokedex/pokedex1.png" alt="pokedex" class="pokedex">
-
+      <div class="pokedex-container">
+        <img
+          src="./assets/pokedex/pokedex1-mobile.png"
+          alt="pokedex"
+          class="pokedex pokedex-mobile"
+        />
+        <img
+          src="./assets/pokedex/pokedex1.png"
+          alt="pokedex"
+          class="pokedex pokedex-normal"
+        />
+      </div>
     </main>
-
-</body>
-
+  </body>
 </html>

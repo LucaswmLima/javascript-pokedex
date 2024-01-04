@@ -22,9 +22,15 @@ main {
 
 }
 
+
 .pokedex {
   width: 100%;
   max-width: 900px;
+
+}
+
+.pokedex-mobile {
+  display: none;
 
 }
 
@@ -178,7 +184,7 @@ main {
   background-color: #444;
   box-shadow: -0.1vw 0.2vw 0 #222, -0.2vw 0.35vw 0 #000;
   ;
-  font-size: clamp(4px, 5vw, 13px)
+  font-size: 1.2em
 }
 
 .buttonLeft img {
@@ -266,4 +272,77 @@ main {
 .speed {
   width: 0;
   background-color: #F85888;
+}
+
+/* Media query para telas menores que 480px */
+@media only screen and (max-width: 480px) {
+.pokedex-normal{
+    display: none;
+}
+.leftDisplayBackGround{
+  left: 17%;
+  height: 37%;
+  bottom: 37%;
+}
+
+.pokedex-container{
+  display: flex;
+      justify-content: center;
+}
+  
+.pokedex-mobile {
+      display: flex;
+      width: 80%; 
+}
+
+.pokemonImage{
+  left:40%;
+  height: 15%;
+}
+
+.rightDisplayStatus,
+.rightDisplayMoves,
+.rightDisplayEncounter,
+.rightDisplayAbility {
+  width: 32%;
+  height: 45%;
+  left: 35%;
+  bottom: -60%;
+}
+
+.buttons2 {
+  left: 17%;
+  bottom: -5%;
+  gap: 1.5%;
+}
+
+
+.buttons3 {
+  left: 51%;
+  bottom: -5%;
+  gap: 1.5%;
+}
+
+.buttonRight {
+  width: 21%;
+  font-size: .7em;
+  
+}
+
+.form {
+  width: 54%;
+  bottom: 23%;
+  left: 20%;
+}
+
+.buttons {
+  bottom: 12%;
+  width: 54%;
+  left: 20%;
+  display: flex;
+  gap: 4%;
+}
+
+
+
 }
