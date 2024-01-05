@@ -92,7 +92,7 @@ main {
 
 .rightDisplayMoves .pokemonData{
   white-space: pre-line;
-    font-size: 15px;
+    font-size: 14px;
     line-height: normal;
     text-align: initial;
     overflow-wrap: break-word
@@ -312,6 +312,74 @@ main {
 .speed {
   width: 0;
   background-color: #F85888;
+}
+
+.move-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.move-table th,
+.move-table td {
+  border: 1px solid #999999;
+  padding: 5px;
+  text-align: left;
+}
+
+.move-table th {
+  background-color: #A8A878;
+  color: #FFF;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.move-table td {
+  background-color: #ffffff;
+  color: #0645ad;
+  /*border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;*/
+}
+
+.move-table th a,
+.move-table td a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.move-table th a:hover,
+.move-table td a:hover {
+  text-decoration: underline;
+}
+
+.move-table th b {
+  font-weight: bold;
+}
+
+.move-table tr:nth-child(odd) {
+  background-color: #8C888C;
+}
+
+.move-table tr:nth-child(even) {
+  background-color: #FFF;
+}
+
+.move-table td span.explain {
+  font-size: 0.9em;
+}
+
+.move-table td small {
+  font-size: 0.8em;
+}
+
+.move-table td ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.move-table td ul li {
+  margin-bottom: 5px;
 }
 
 /* Media query para telas menores que 600px */

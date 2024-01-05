@@ -29,6 +29,26 @@ const speedNumber = document.querySelector(".speedNumber");
 const totalNumber = document.querySelector(".totalNumber");
 const pokemonMoves = document.querySelector(".pokemonMoves");
 
+const types = {
+  normal: { name: "Normal", bg: "#A8A878", border: "#6D6D4E" },
+  fire: { name: "Fire", bg: "#F08030", border: "#9C531F" },
+  fighting: { name: "Fighting", bg: "#C03028", border: "#7D1F1A" },
+  water: { name: "Water", bg: "#6890F0", border: "#445E9C" },
+  flying: { name: "Flying", bg: "#A890F0", border: "#6D5E9C" },
+  grass: { name: "Grass", bg: "#78C850", border: "#4E8234" },
+  poison: { name: "Poison", bg: "#A040A0", border: "#682A68" },
+  eletric: { name: "Normal", bg: "#F8D030", border: "#A1871F" },
+  ground: { name: "Ground", bg: "#E0C068", border: "#927D44" },
+  psychic: { name: "Psychic", bg: "#F85888", border: "#A13959" },
+  normal: { name: "Normal", bg: "#A8A878", border: "#6D6D4E" },
+  normal: { name: "Normal", bg: "#A8A878", border: "#6D6D4E" },
+};
+
+const categories = {
+  physical: { name: "Physical", bg: "#C92112"},
+  special: { name: "Special", bg: "#4F5870"}
+};
+
 let serchedPokemon = 1;
 
 // Initialize pokedex with the correct menus
@@ -145,9 +165,10 @@ const renderPokemon = async function (pokemon) {
             : "--- ";
         const moveType =
           moveData["type"] !== null ? moveData["type"]["name"] : "--- ";
+        const moveEffectEntries = moveData["effect_entries"];
         const moveEffect =
-          moveData["effect_entries"][0] !== null
-            ? moveData["effect_entries"][0]["short_effect"].replace(
+          moveEffectEntries && moveEffectEntries[0]
+            ? moveEffectEntries[0]["short_effect"].replace(
                 "$effect_chance%",
                 moveEffectChance + "%"
               )
@@ -170,22 +191,82 @@ const renderPokemon = async function (pokemon) {
       })
     );
 
-    // Moves stats
-    const moveStatsList = moveList
-      .map(
-        (move) =>
-          ` <strong>Name:</strong> ${move.moveName}
-            <strong>Category:</strong> ${move.moveCategory}&nbsp&nbsp&nbsp&nbsp<strong>Type:</strong> ${move.moveType}
-            <strong>Power:</strong> ${move.movePower}&nbsp&nbsp&nbsp&nbsp<strong>Accuracy:</strong> ${move.moveAccuracy}
-            <strong>PP:</strong> ${move.movePP}&nbsp&nbsp&nbsp&nbsp<strong>Priority:</strong> ${move.movePriority}
-            <strong>Area:</strong> ${move.moveArea}
-            <strong>Effect Chance:</strong> ${move.moveEffectChance}%
-            <strong>Effect:</strong> ${move.moveEffect}\n __________________
-            `
-      )
-      .join("\n");
+    const movesContainer = document.getElementById("movesContainer");
 
-    pokemonMoves.innerHTML = moveStatsList;
+    movesContainer.innerHTML = ""; // Limpa o conteúdo anterior
+
+    moveList.forEach((move) => {
+      const moveTable = document.createElement("table");
+      moveTable.classList.add("move-table");
+
+      // Move Name Row
+      const nameRow = moveTable.insertRow();
+      const nameCell = nameRow.insertCell(0);
+      nameCell.colSpan = 2;
+      nameCell.classList.add("move-name");
+      nameCell.innerHTML =
+        move.moveName.charAt(0).toUpperCase() + move.moveName.slice(1);
+
+      // Type Row
+      const typeRow = moveTable.insertRow();
+      const typeCellLabel = typeRow.insertCell(0);
+      const typeCellData = typeRow.insertCell(1);
+
+      typeCellLabel.innerHTML = "Type";
+      typeCellData.innerHTML = move.moveType;
+
+      const typeStyle = types[move.moveType];
+      if (typeStyle) {
+        typeCellData.style.backgroundColor = typeStyle.bg;
+        typeCellData.style.color = "#FFF";
+        typeCellLabel.style.backgroundColor = typeStyle.bg;
+        typeCellLabel.style.color = "#FFF";
+      }
+
+      // Category Row
+      const categoryRow = moveTable.insertRow();
+      const categoryCellLabel = categoryRow.insertCell(0);
+      const categoryCellData = categoryRow.insertCell(1);
+
+      categoryCellLabel.innerHTML = "Category";
+      categoryCellData.innerHTML = move.moveCategory;
+
+      const categoryStyle = categories[move.moveCategory];
+      if (categoryStyle) {
+        categoryCellData.style.backgroundColor = categoryStyle.bg;
+        categoryCellData.style.color = "#FFF";
+        categoryCellLabel.style.backgroundColor = categoryStyle.bg;
+        categoryCellLabel.style.color = "#FFF";
+      }
+
+      // Power Row
+      const powerRow = moveTable.insertRow();
+      powerRow.insertCell(0).innerHTML = "Power";
+      powerRow.insertCell(1).innerHTML = move.movePower;
+
+      // PP Row
+      const PPRow = moveTable.insertRow();
+      PPRow.insertCell(0).innerHTML = "PP";
+      PPRow.insertCell(1).innerHTML = `${move.movePP}`;
+
+      // Accuracy Row
+      const accuracyRow = moveTable.insertRow();
+      accuracyRow.insertCell(0).innerHTML = "Accuracy:";
+      accuracyRow.insertCell(1).innerHTML = `${move.moveAccuracy}%`;
+
+      // Area Row
+      const areaRow = moveTable.insertRow();
+      areaRow.insertCell(0).innerHTML = "Target";
+      areaRow.insertCell(1).innerHTML = `${move.moveArea}`;
+
+      // Effect Row
+      const effectRow = moveTable.insertRow();
+      effectRow.insertCell(0).innerHTML = "Effect";
+      effectRow.insertCell(1).innerHTML = `${move.moveEffect}`;
+
+      // Append the table to the container
+      movesContainer.appendChild(moveTable);
+    });
   } else {
     pokemonImage.style.display = "none";
     pokemonStatsContainer.style.display = "none";
