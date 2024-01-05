@@ -90,9 +90,13 @@ main {
   border-radius: 20px;
 }
 
-.pokemonMoves{
+.rightDisplayMoves .pokemonData{
   white-space: pre-line;
-  font-size: .8em;
+    font-size: 15px;
+    line-height: normal;
+    text-align: initial;
+    overflow-wrap: break-word
+
 }
 
 /* Handle on hover */
@@ -138,7 +142,6 @@ main {
   white-space: pre-wrap;
   max-height: 200px;
   background-color: #6ab7f5;
-  /* Preserva quebras de linha */
 }
 
 .form {
@@ -402,6 +405,15 @@ body {
   z-index: -100;
 
 }
+
+.rightDisplayMoves .pokemonData {
+  white-space: pre-line;
+  font-size: 12px;
+  line-height: normal;
+  text-align: initial;
+  overflow-wrap: break-word
+}
+
 
 
 }
