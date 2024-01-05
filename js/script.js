@@ -180,7 +180,7 @@ const renderPokemon = async function (pokemon) {
             <strong>PP:</strong> ${move.movePP}&nbsp&nbsp&nbsp&nbsp<strong>Priority:</strong> ${move.movePriority}
             <strong>Area:</strong> ${move.moveArea}
             <strong>Effect Chance:</strong> ${move.moveEffectChance}%
-            <strong>Effect:</strong> ${move.moveEffect}\n ___________________________
+            <strong>Effect:</strong> ${move.moveEffect}\n __________________
             `
       )
       .join("\n");
