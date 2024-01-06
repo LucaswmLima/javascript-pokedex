@@ -316,14 +316,21 @@ main {
 
 .move-table {
   width: 100%;
-  border-collapse: collapse;
+  /*border-collapse: collapse;*/
   margin-bottom: 20px;
+  background-color: #999999;
+  border-radius: 10px;  
+  border: 2px solid #999999;
+}
+
+.move-name {
+  text-align: center !important;
 }
 
 .move-table th,
 .move-table td {
-  border: 1px solid #999999;
-  padding: 5px;
+  border: 1px solid #ffffff;
+  padding: 3px;
   text-align: left;
 }
 
@@ -337,6 +344,7 @@ main {
 .move-table td {
   background-color: #ffffff;
   color: #0645ad;
+
   /*border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;*/
 }
@@ -476,7 +484,7 @@ body {
 
 .rightDisplayMoves .pokemonData {
   white-space: pre-line;
-  font-size: 12px;
+  font-size: 10px;
   line-height: normal;
   text-align: initial;
   overflow-wrap: break-word

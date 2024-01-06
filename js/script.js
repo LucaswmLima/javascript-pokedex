@@ -45,8 +45,8 @@ const types = {
 };
 
 const categories = {
-  physical: { name: "Physical", bg: "#C92112"},
-  special: { name: "Special", bg: "#4F5870"}
+  physical: { name: "Physical", bg: "#C92112", fontColor: "#F67A1A"},
+  special: { name: "Special", bg: "#4F5870", fontColor: "#fff"}
 };
 
 let serchedPokemon = 1;
@@ -195,6 +195,7 @@ const renderPokemon = async function (pokemon) {
 
     movesContainer.innerHTML = ""; // Limpa o conteúdo anterior
 
+    // Move Table Render
     moveList.forEach((move) => {
       const moveTable = document.createElement("table");
       moveTable.classList.add("move-table");
@@ -204,8 +205,11 @@ const renderPokemon = async function (pokemon) {
       const nameCell = nameRow.insertCell(0);
       nameCell.colSpan = 2;
       nameCell.classList.add("move-name");
-      nameCell.innerHTML =
-        move.moveName.charAt(0).toUpperCase() + move.moveName.slice(1);
+      nameCell.style.borderTopRightRadius = "10px";
+      nameCell.style.borderBottomRightRadius = "10px";
+      nameCell.style.borderTopLeftRadius = "10px";
+      nameCell.style.borderBottomLeftRadius = "10px";
+      nameCell.innerHTML = move.moveName.charAt(0).toUpperCase() + move.moveName.slice(1);
 
       // Type Row
       const typeRow = moveTable.insertRow();
@@ -213,15 +217,24 @@ const renderPokemon = async function (pokemon) {
       const typeCellData = typeRow.insertCell(1);
 
       typeCellLabel.innerHTML = "Type";
-      typeCellData.innerHTML = move.moveType;
+      typeCellData.innerHTML =
+        move.moveType.charAt(0).toUpperCase() + move.moveType.slice(1);;
 
       const typeStyle = types[move.moveType];
       if (typeStyle) {
         typeCellData.style.backgroundColor = typeStyle.bg;
+        typeCellData.style.borderColor = "#fff";
         typeCellData.style.color = "#FFF";
         typeCellLabel.style.backgroundColor = typeStyle.bg;
         typeCellLabel.style.color = "#FFF";
+        typeCellLabel.style.borderColor = "#fff";
+        
       }
+
+      typeCellData.style.borderTopRightRadius = "10px";
+      typeCellData.style.borderBottomRightRadius = "10px";
+      typeCellLabel.style.borderTopLeftRadius = "10px";
+      typeCellLabel.style.borderBottomLeftRadius = "10px";
 
       // Category Row
       const categoryRow = moveTable.insertRow();
@@ -229,25 +242,41 @@ const renderPokemon = async function (pokemon) {
       const categoryCellData = categoryRow.insertCell(1);
 
       categoryCellLabel.innerHTML = "Category";
-      categoryCellData.innerHTML = move.moveCategory;
+      categoryCellData.innerHTML =
+        move.moveCategory.charAt(0).toUpperCase() + move.moveCategory.slice(1);;
 
       const categoryStyle = categories[move.moveCategory];
       if (categoryStyle) {
         categoryCellData.style.backgroundColor = categoryStyle.bg;
-        categoryCellData.style.color = "#FFF";
+        categoryCellData.style.color = categoryStyle.fontColor;
+        categoryCellData.style.borderColor = "#fff";
         categoryCellLabel.style.backgroundColor = categoryStyle.bg;
         categoryCellLabel.style.color = "#FFF";
+        categoryCellLabel.style.borderColor = "#fff";
+  
       }
+
+      categoryCellData.style.borderTopRightRadius = "10px";
+      categoryCellData.style.borderBottomRightRadius = "10px";
+      categoryCellLabel.style.borderTopLeftRadius = "10px";
+      categoryCellLabel.style.borderBottomLeftRadius = "10px";
+
 
       // Power Row
       const powerRow = moveTable.insertRow();
-      powerRow.insertCell(0).innerHTML = "Power";
-      powerRow.insertCell(1).innerHTML = move.movePower;
+      const powerCellLabel = powerRow.insertCell(0)
+      const powerCellData = powerRow.insertCell(1);
+      powerCellLabel.innerHTML = "Power"
+      powerCellData.innerHTML = move.movePower
+
+      powerCellData.style.borderTopRightRadius = "10px";
+      powerCellLabel.style.borderTopLeftRadius = "10px";
+
 
       // PP Row
       const PPRow = moveTable.insertRow();
       PPRow.insertCell(0).innerHTML = "PP";
-      PPRow.insertCell(1).innerHTML = `${move.movePP}`;
+      PPRow.insertCell(1).innerHTML = move.movePP;
 
       // Accuracy Row
       const accuracyRow = moveTable.insertRow();
@@ -257,12 +286,19 @@ const renderPokemon = async function (pokemon) {
       // Area Row
       const areaRow = moveTable.insertRow();
       areaRow.insertCell(0).innerHTML = "Target";
-      areaRow.insertCell(1).innerHTML = `${move.moveArea}`;
+      areaRow.insertCell(1).innerHTML =
+        move.moveArea.charAt(0).toUpperCase() + move.moveArea.slice(1);;
 
       // Effect Row
       const effectRow = moveTable.insertRow();
-      effectRow.insertCell(0).innerHTML = "Effect";
-      effectRow.insertCell(1).innerHTML = `${move.moveEffect}`;
+      const effectCellLabel = effectRow.insertCell(0);
+      const effectCellData = effectRow.insertCell(1);
+      effectCellLabel.innerHTML = "Effect";
+      effectCellData.innerHTML = move.moveEffect;
+
+      effectCellData.style.borderBottomRightRadius = "10px";
+      effectCellLabel.style.borderBottomLeftRadius = "10px";
+      
 
       // Append the table to the container
       movesContainer.appendChild(moveTable);
