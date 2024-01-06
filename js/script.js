@@ -40,13 +40,24 @@ const types = {
   eletric: { name: "Normal", bg: "#F8D030", border: "#A1871F" },
   ground: { name: "Ground", bg: "#E0C068", border: "#927D44" },
   psychic: { name: "Psychic", bg: "#F85888", border: "#A13959" },
-  normal: { name: "Normal", bg: "#A8A878", border: "#6D6D4E" },
-  normal: { name: "Normal", bg: "#A8A878", border: "#6D6D4E" },
+  rock: { name: "Rock", bg: "#B8A038", border: "#786824" },
+  ice: { name: "Ice", bg: "#98D8D8", border: "#638D8D" },
+  bug: { name: "Bug", bg: "#A8B820", border: "#6D7815" },
+  dragon: { name: "Dragon", bg: "#7038F8", border: "#4924A1" },
+  ghost: { name: "Ghost", bg: "#705898", border: "#493963" },
+  dark: { name: "Dark", bg: "#705848", border: "#49392F" },
+  steel: { name: "Steel", bg: "#B8B8D0", border: "#787887" },
+  fairy: { name: "Fairy", bg: "#EE99AC", border: "#9B6470" },
+  stellar: { name: "Stellar", bg: "#7CC7B2", border: "#518174" },
+  "???": { name: "???", bg: "#68A090", border: "#44685E" },
+  null: { name: "???", bg: "#68A090", border: "#44685E" },
+  undefined: { name: "???", bg: "#68A090", border: "#44685E" },
 };
 
 const categories = {
-  physical: { name: "Physical", bg: "#C92112", fontColor: "#F67A1A"},
-  special: { name: "Special", bg: "#4F5870", fontColor: "#fff"}
+  physical: { name: "Physical", bg: "#C92112", fontColor: "#F67A1A" },
+  special: { name: "Special", bg: "#4F5870", fontColor: "#fff" },
+  status: { name: "Status", bg: "#8C888C", fontColor: "#fff" },
 };
 
 let serchedPokemon = 1;
@@ -193,8 +204,9 @@ const renderPokemon = async function (pokemon) {
 
     const movesContainer = document.getElementById("movesContainer");
 
+    
     movesContainer.innerHTML = ""; // Limpa o conteúdo anterior
-
+    
     // Move Table Render
     moveList.forEach((move) => {
       const moveTable = document.createElement("table");
@@ -209,7 +221,8 @@ const renderPokemon = async function (pokemon) {
       nameCell.style.borderBottomRightRadius = "10px";
       nameCell.style.borderTopLeftRadius = "10px";
       nameCell.style.borderBottomLeftRadius = "10px";
-      nameCell.innerHTML = move.moveName.charAt(0).toUpperCase() + move.moveName.slice(1);
+      nameCell.innerHTML =
+        move.moveName.charAt(0).toUpperCase() + move.moveName.slice(1);
 
       // Type Row
       const typeRow = moveTable.insertRow();
@@ -218,7 +231,7 @@ const renderPokemon = async function (pokemon) {
 
       typeCellLabel.innerHTML = "Type";
       typeCellData.innerHTML =
-        move.moveType.charAt(0).toUpperCase() + move.moveType.slice(1);;
+        move.moveType.charAt(0).toUpperCase() + move.moveType.slice(1);
 
       const typeStyle = types[move.moveType];
       if (typeStyle) {
@@ -228,7 +241,6 @@ const renderPokemon = async function (pokemon) {
         typeCellLabel.style.backgroundColor = typeStyle.bg;
         typeCellLabel.style.color = "#FFF";
         typeCellLabel.style.borderColor = "#fff";
-        
       }
 
       typeCellData.style.borderTopRightRadius = "10px";
@@ -243,7 +255,7 @@ const renderPokemon = async function (pokemon) {
 
       categoryCellLabel.innerHTML = "Category";
       categoryCellData.innerHTML =
-        move.moveCategory.charAt(0).toUpperCase() + move.moveCategory.slice(1);;
+        move.moveCategory.charAt(0).toUpperCase() + move.moveCategory.slice(1);
 
       const categoryStyle = categories[move.moveCategory];
       if (categoryStyle) {
@@ -253,7 +265,6 @@ const renderPokemon = async function (pokemon) {
         categoryCellLabel.style.backgroundColor = categoryStyle.bg;
         categoryCellLabel.style.color = "#FFF";
         categoryCellLabel.style.borderColor = "#fff";
-  
       }
 
       categoryCellData.style.borderTopRightRadius = "10px";
@@ -261,17 +272,15 @@ const renderPokemon = async function (pokemon) {
       categoryCellLabel.style.borderTopLeftRadius = "10px";
       categoryCellLabel.style.borderBottomLeftRadius = "10px";
 
-
       // Power Row
       const powerRow = moveTable.insertRow();
-      const powerCellLabel = powerRow.insertCell(0)
+      const powerCellLabel = powerRow.insertCell(0);
       const powerCellData = powerRow.insertCell(1);
-      powerCellLabel.innerHTML = "Power"
-      powerCellData.innerHTML = move.movePower
+      powerCellLabel.innerHTML = "Power";
+      powerCellData.innerHTML = move.movePower;
 
       powerCellData.style.borderTopRightRadius = "10px";
       powerCellLabel.style.borderTopLeftRadius = "10px";
-
 
       // PP Row
       const PPRow = moveTable.insertRow();
@@ -287,7 +296,7 @@ const renderPokemon = async function (pokemon) {
       const areaRow = moveTable.insertRow();
       areaRow.insertCell(0).innerHTML = "Target";
       areaRow.insertCell(1).innerHTML =
-        move.moveArea.charAt(0).toUpperCase() + move.moveArea.slice(1);;
+        move.moveArea.charAt(0).toUpperCase() + move.moveArea.slice(1);
 
       // Effect Row
       const effectRow = moveTable.insertRow();
@@ -298,7 +307,6 @@ const renderPokemon = async function (pokemon) {
 
       effectCellData.style.borderBottomRightRadius = "10px";
       effectCellLabel.style.borderBottomLeftRadius = "10px";
-      
 
       // Append the table to the container
       movesContainer.appendChild(moveTable);
