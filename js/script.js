@@ -60,6 +60,127 @@ const categories = {
   status: { name: "Status", bg: "#8C888C", fontColor: "#fff" },
 };
 
+const games = {
+  red: { name: "Red", bg: "#FF1111", border: "#FF1111", fontColor: "#000" },
+  blue: { name: "Blue", bg: "#1111FF", border: "#1111FF", fontColor: "#fff" },
+  bluejapan: {
+    name: "Blue (Japan)",
+    bg: "#1111FF",
+    border: "#1111FF",
+    fontColor: "#fff",
+  },
+  yellow: {
+    name: "Yellow",
+    bg: "#FFD733",
+    border: "#FFD733",
+    fontColor: "#000",
+  },
+  gold: { name: "Gold", bg: "#fff", border: "#DAA520", fontColor: "#DAA520" },
+  silver: {
+    name: "Silver",
+    bg: "#fff",
+    border: "#C0C0C0",
+    fontColor: "#C0C0C0",
+  },
+  crystal: {
+    name: "Crystal",
+    bg: "#fff",
+    border: "#4FD9FF",
+    fontColor: "#338DA6",
+  },
+  ruby: { name: "Ruby", bg: "#fff", border: "#A00000", fontColor: "#A00000" },
+  sapphire: {
+    name: "Sapphire",
+    bg: "#fff",
+    border: "#0000A0",
+    fontColor: "#0000A0",
+  },
+  emerald: {
+    name: "Emerald",
+    bg: "#fff",
+    border: "#00A000",
+    fontColor: "#00A000",
+  },
+  firered: {
+    name: "FireRed",
+    bg: "#FF7327",
+    border: "#FF7327",
+    fontColor: "#000",
+  },
+  leafgreen: {
+    name: "LeafGreen",
+    bg: "#00DD00",
+    border: "#00DD00",
+    fontColor: "#000",
+  },
+  colosseum: {
+    name: "Colosseum",
+    bg: "#fff",
+    border: "#B6CAE4",
+    fontColor: "#768394",
+  },
+  xd: { name: "XD", bg: "#fff", border: "#604E82", fontColor: "#3E3355" },
+  diamond: {
+    name: "Diamond",
+    bg: "#fff",
+    border: "#AAAAFF",
+    fontColor: "#6F6FA6",
+  },
+  emerald: {
+    name: "Emerald",
+    bg: "#fff",
+    border: "#FFAAAA",
+    fontColor: "#A66F6F",
+  },
+  platinum: {
+    name: "Platinum",
+    bg: "#fff",
+    border: "#999999",
+    fontColor: "#646464",
+  },
+  heartgold: {
+    name: "HeartGold",
+    bg: "#B69E00",
+    border: "#B69E00",
+    fontColor: "#000",
+  },
+  soulsilver: {
+    name: "SoulSilver",
+    bg: "#C0C0E1",
+    border: "#C0C0E1",
+    fontColor: "#000",
+  },
+  palpark: {
+    name: "Pal Park",
+    bg: "#A2E0A3",
+    border: "#A2E0A3",
+    fontColor: "#000",
+  },
+  black: { name: "Black", bg: "#fff", border: "#444444", fontColor: "#2C2C2C" },
+  white: { name: "White", bg: "#fff", border: "#E1E1E1", fontColor: "#929292" },
+  black2: {
+    name: "Black 2",
+    bg: "#fff",
+    border: "#444444",
+    fontColor: "#2C2C2C",
+  },
+  white2: {
+    name: "White 2",
+    bg: "#fff",
+    border: "#E1E1E1",
+    fontColor: "#929292",
+  },
+  x: { name: "X", bg: "#025DA6", border: "#025DA6", fontColor: "#fff" },
+  y: { name: "Y", bg: "#EA1A3E", border: "#EA1A3E", fontColor: "#000" },
+  omegaRuby: {
+    name: "Omega Ruby",
+    bg: "#fff",
+    border: "#AB2813",
+    fontColor: "#6F1A0C",
+  },
+};
+
+
 let serchedPokemon = 1;
 
 // Initialize pokedex with the correct menus
@@ -204,9 +325,8 @@ const renderPokemon = async function (pokemon) {
 
     const movesContainer = document.getElementById("movesContainer");
 
-    
     movesContainer.innerHTML = ""; // Limpa o conteúdo anterior
-    
+
     // Move Table Render
     moveList.forEach((move) => {
       const moveTable = document.createElement("table");
