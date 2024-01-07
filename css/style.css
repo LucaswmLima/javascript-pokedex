@@ -391,6 +391,84 @@ main {
   margin-bottom: 5px;
 }
 
+/* ENCOUNTER TABLE */
+
+.encounter-table {
+  width: 100%;
+  /*border-collapse: collapse;*/
+  margin-bottom: 20px;
+  background-color: #999999;
+  border-radius: 10px;
+  border: 2px solid #999999;
+}
+
+.encounter-name {
+  text-align: center !important;
+}
+
+.encounter-table th,
+.encounter-table td {
+  border: 1px solid #ffffff;
+  padding: 3px;
+  text-align: left;
+}
+
+.encounter-table th {
+  background-color: #A8A878;
+  color: #FFF;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.encounter-table td {
+  background-color: #ffffff;
+  color: #0645ad;
+
+  /*border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;*/
+}
+
+.encounter-table th a,
+.encounter-table td a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.encounter-table th a:hover,
+.encounter-table td a:hover {
+  text-decoration: underline;
+}
+
+.encounter-table th b {
+  font-weight: bold;
+}
+
+.encounter-table tr:nth-child(odd) {
+  background-color: #8C888C;
+}
+
+.encounter-table tr:nth-child(even) {
+  background-color: #FFF;
+}
+
+.encounter-table td span.explain {
+  font-size: 0.9em;
+}
+
+.encounter-table td small {
+  font-size: 0.8em;
+}
+
+.encounter-table td ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.encounter-table td ul li {
+  margin-bottom: 5px;
+}
+
 /* Media query para telas menores que 600px */
 @media only screen and (max-width: 600px) {
 body {

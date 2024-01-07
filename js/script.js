@@ -28,6 +28,8 @@ const spDefNumber = document.querySelector(".spDefNumber");
 const speedNumber = document.querySelector(".speedNumber");
 const totalNumber = document.querySelector(".totalNumber");
 const pokemonMoves = document.querySelector(".pokemonMoves");
+const movesContainer = document.getElementById("movesContainer");
+const encountersContainer = document.getElementById("encounterContainer");
 
 const types = {
   normal: { name: "Normal", bg: "#A8A878", border: "#6D6D4E" },
@@ -180,10 +182,10 @@ const games = {
   },
 };
 
+// Initialize pokedex with the correct menus
 
 let serchedPokemon = 1;
 
-// Initialize pokedex with the correct menus
 const initializePokedex = function () {
   buttonStats.classList.add("buttonRightActive");
   buttonMoves.classList.remove("buttonRightActive");
@@ -218,8 +220,8 @@ const fetchPokemon = async function (pokemon) {
 };
 
 // Search a move in API
-const fetchMove = async function (move) {
-  const APIResponse = await fetch(`https://pokeapi.co/api/v2/move/${move}`);
+const fetchMove = async function (pokemon) {
+  const APIResponse = await fetch(`https://pokeapi.co/api/v2/move/${pokemon}`);
 
   if (APIResponse.status == 200) {
     const moveData = await APIResponse.json();
@@ -227,12 +229,15 @@ const fetchMove = async function (move) {
   }
 };
 
+
 // Apply the search changed on screen
 const renderPokemon = async function (pokemon) {
   pokemonName.innerHTML = "Loading...";
   pokemonNumber.innerHTML = "";
 
   const pokemonData = await fetchPokemon(pokemon);
+  const pokemonEncounter = await fetchPokemon(`${pokemon}/encounters`);
+  console.log(pokemonEncounter);
 
   if (pokemonData) {
     pokemonImage.style.display = "block";
@@ -322,9 +327,7 @@ const renderPokemon = async function (pokemon) {
         };
       })
     );
-
-    const movesContainer = document.getElementById("movesContainer");
-
+    encountersContainer.innerHTML = ""; // Limpa o conteúdo anterior
     movesContainer.innerHTML = ""; // Limpa o conteúdo anterior
 
     // Move Table Render
@@ -378,6 +381,7 @@ const renderPokemon = async function (pokemon) {
         move.moveCategory.charAt(0).toUpperCase() + move.moveCategory.slice(1);
 
       const categoryStyle = categories[move.moveCategory];
+
       if (categoryStyle) {
         categoryCellData.style.backgroundColor = categoryStyle.bg;
         categoryCellData.style.color = categoryStyle.fontColor;
@@ -404,16 +408,19 @@ const renderPokemon = async function (pokemon) {
 
       // PP Row
       const PPRow = moveTable.insertRow();
+
       PPRow.insertCell(0).innerHTML = "PP";
       PPRow.insertCell(1).innerHTML = move.movePP;
 
       // Accuracy Row
       const accuracyRow = moveTable.insertRow();
+
       accuracyRow.insertCell(0).innerHTML = "Accuracy:";
       accuracyRow.insertCell(1).innerHTML = `${move.moveAccuracy}%`;
 
       // Area Row
       const areaRow = moveTable.insertRow();
+
       areaRow.insertCell(0).innerHTML = "Target";
       areaRow.insertCell(1).innerHTML =
         move.moveArea.charAt(0).toUpperCase() + move.moveArea.slice(1);
@@ -422,6 +429,7 @@ const renderPokemon = async function (pokemon) {
       const effectRow = moveTable.insertRow();
       const effectCellLabel = effectRow.insertCell(0);
       const effectCellData = effectRow.insertCell(1);
+
       effectCellLabel.innerHTML = "Effect";
       effectCellData.innerHTML = move.moveEffect;
 
@@ -431,12 +439,81 @@ const renderPokemon = async function (pokemon) {
       // Append the table to the container
       movesContainer.appendChild(moveTable);
     });
+
+    // Objeto para rastrear versões e tabelas correspondentes
+    const versionTables = {};
+
+    // Enconter Table Render
+    pokemonEncounter.forEach((encounter) => {
+      encounter.version_details.forEach((versionDetail) => {
+        const versionName = versionDetail.version.name.toLowerCase();
+
+        // Verifica se a versão está na lista games
+        if (games[versionName]) {
+          // Verifica se a versão já foi processada
+          if (!versionTables[versionName]) {
+            // Cria uma nova tabela se a versão ainda não foi processada
+            const encounterTable = document.createElement("table");
+            encounterTable.classList.add("encounter-table");
+
+            // Adiciona a tabela ao objeto versionTables
+            versionTables[versionName] = encounterTable;
+
+            // Adiciona a versão à tabela
+            const versionRow = encounterTable.insertRow();
+            const versionCell = versionRow.insertCell(0);
+            versionCell.colSpan = 2;
+            versionCell.classList.add("encounter-version");
+            versionCell.innerHTML = versionName.toUpperCase();
+
+            const versionStyle = games[versionName];
+
+            if (versionStyle) {
+              versionCell.style.backgroundColor = versionStyle.bg;
+              versionCell.style.color = versionStyle.fontColor;
+              versionCell.style.borderColor = versionStyle.border;
+            }
+
+            versionCell.style.borderRadius = "10px";
+          }
+
+          // Adiciona a location_area à tabela correspondente
+          const encounterTable = versionTables[versionName];
+
+          const locationRow = encounterTable.insertRow();
+          const locationCell = locationRow.insertCell(0);
+          locationCell.colSpan = 2;
+          locationCell.classList.add("encounter-location");
+          locationCell.innerHTML = encounter.location_area.name.toUpperCase();
+          locationCell.style.borderTop = "5px solid rgb(83 83 83)";
+
+          // Method Row
+          const methodRow = encounterTable.insertRow();
+          const methodCellLabel = methodRow.insertCell(0);
+          const methodCellData = methodRow.insertCell(1);
+
+          methodCellLabel.innerHTML = "Method";
+          methodCellData.innerHTML =
+            versionDetail.encounter_details[0].method.name;
+
+        }
+      });
+    });
+
+    // Adiciona as tabelas ao container
+    Object.values(versionTables).forEach((table) => {
+      encountersContainer.appendChild(table);
+    });
   } else {
     pokemonImage.style.display = "none";
     pokemonStatsContainer.style.display = "none";
     pokemonName.innerHTML = "Not Found :(";
     pokemonNumber.innerHTML = "";
   }
+
+  
+
+
 };
 
 // Render the searched pokemon
