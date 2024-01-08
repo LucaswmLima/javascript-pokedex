@@ -39,7 +39,7 @@ const types = {
   flying: { name: "Flying", bg: "#A890F0", border: "#6D5E9C" },
   grass: { name: "Grass", bg: "#78C850", border: "#4E8234" },
   poison: { name: "Poison", bg: "#A040A0", border: "#682A68" },
-  eletric: { name: "Normal", bg: "#F8D030", border: "#A1871F" },
+  electric: { name: "Electric", bg: "#F8D030", border: "#A1871F" },
   ground: { name: "Ground", bg: "#E0C068", border: "#927D44" },
   psychic: { name: "Psychic", bg: "#F85888", border: "#A13959" },
   rock: { name: "Rock", bg: "#B8A038", border: "#786824" },
@@ -128,8 +128,8 @@ const games = {
     border: "#AAAAFF",
     fontColor: "#6F6FA6",
   },
-  emerald: {
-    name: "Emerald",
+  pearl: {
+    name: "Pearl",
     bg: "#fff",
     border: "#FFAAAA",
     fontColor: "#A66F6F",
@@ -172,6 +172,12 @@ const games = {
     border: "#E1E1E1",
     fontColor: "#929292",
   },
+  dreamworld: {
+    name: "Dream World",
+    bg: "#EF52B2",
+    border: "#EF52B2",
+    fontColor: "#fff",
+  },
   x: { name: "X", bg: "#025DA6", border: "#025DA6", fontColor: "#fff" },
   y: { name: "Y", bg: "#EA1A3E", border: "#EA1A3E", fontColor: "#000" },
   omegaRuby: {
@@ -179,6 +185,96 @@ const games = {
     bg: "#fff",
     border: "#AB2813",
     fontColor: "#6F1A0C",
+  },
+  alphasapphire: {
+    name: "Alpha Sapphire",
+    bg: "#fff",
+    border: "#26649C",
+    fontColor: "#194166",
+  },
+  sun: {
+    name: "Sun",
+    bg: "#fff",
+    border: "#F1912B",
+    fontColor: "#9D5E1C",
+  },
+  moon: {
+    name: "Moon",
+    bg: "#fff",
+    border: "#5599CA",
+    fontColor: "#376483",
+  },
+  ultrasun: {
+    name: "Ultra Sun",
+    bg: "#E95B2B",
+    border: "#E95B2B",
+    fontColor: "#000",
+  },
+  ultramoon: {
+    name: "Ultra Moon",
+    bg: "#226DB5",
+    border: "#226DB5",
+    fontColor: "#000",
+  },
+  letsgopikachu: {
+    name: "Let's Go Pikachu",
+    bg: "#F5DA26",
+    border: "#F5DA26",
+    fontColor: "#000",
+  },
+  letsgoeevee: {
+    name: "Let's Go Eevee",
+    bg: "#D4924B",
+    border: "#D4924B",
+    fontColor: "#000",
+  },
+  sword: {
+    name: "Sword",
+    bg: "#fff",
+    border: "#00A1E9",
+    fontColor: "#006998",
+  },
+  shield: {
+    name: "Shield",
+    bg: "#fff",
+    border: "#BF004F",
+    fontColor: "#7C0033",
+  },
+  brilliantdiamond: {
+    name: "Brilliant Diamond",
+    bg: "#44BAE5",
+    border: "#44BAE5",
+    fontColor: "#000",
+  },
+  shiningpearl: {
+    name: "Shining Pearl",
+    bg: "#DA7D99",
+    border: "#DA7D99",
+    fontColor: "#000",
+  },
+  legendsarceus: {
+    name: "Legends: Arceus",
+    bg: "#fff",
+    border: "#36597B",
+    fontColor: "#233A50",
+  },
+  scarlet: {
+    name: "Scarlet",
+    bg: "#fff",
+    border: "#F34134",
+    fontColor: "#9E2A22",
+  },
+  scarlet: {
+    name: "Violet",
+    bg: "#fff",
+    border: "#8334B7",
+    fontColor: "#552277",
+  },
+  thehiddentreasureofareazero: {
+    name: "The Hidden Treasure of Area Zero ",
+    bg: "#7CC7B2",
+    border: "#7CC7B2",
+    fontColor: "#215E7E",
   },
 };
 
@@ -206,6 +302,17 @@ initializePokedex();
 function playAudio(url) {
   new Audio(url).play();
   Audio.volume = 0.2;
+}
+
+// Format text function
+function formatText(text) {
+  const words = text.split("-");
+  const formattedWords = words.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  );
+  const formattedText = formattedWords.join(" ");
+
+  return formattedText;
 }
 
 // Search a pokemon in API
@@ -497,7 +604,7 @@ const renderPokemon = async function (pokemon) {
             locationCell.colSpan = 2;
             locationCell.classList.add("encounter-location");
             
-            locationCell.innerHTML = encounter.location_area.name.toUpperCase();
+            locationCell.innerHTML = formatText(encounter.location_area.name);
             locationCell.style.borderTop = "5px solid rgb(83 83 83)";
             locationCell.style.borderRight = "0px";
             locationCell.style.borderLeft = "0px";
@@ -508,8 +615,8 @@ const renderPokemon = async function (pokemon) {
             const methodCellData = methodRow.insertCell(1);
 
             methodCellLabel.innerHTML = "Method";
-            methodCellData.innerHTML =
-              versionDetail.encounter_details[0].method.name;
+            methodCellData.innerHTML =formatText(
+              versionDetail.encounter_details[0].method.name);
           }
         });
       });
