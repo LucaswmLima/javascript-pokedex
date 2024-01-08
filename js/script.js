@@ -185,6 +185,7 @@ const games = {
 // Initialize pokedex with the correct menus
 
 let serchedPokemon = 1;
+let rightDisplayFunction = "status";
 
 const initializePokedex = function () {
   buttonStats.classList.add("buttonRightActive");
@@ -233,11 +234,14 @@ const fetchMove = async function (pokemon) {
 // Apply the search changed on screen
 const renderPokemon = async function (pokemon) {
   pokemonName.innerHTML = "Loading...";
+  encountersContainer.innerHTML = "Loading...";
+  movesContainer.innerHTML = "Loading...";
   pokemonNumber.innerHTML = "";
+  encountersContainer.innerHTML = "";
+  movesContainer.innerHTML = "";
 
   const pokemonData = await fetchPokemon(pokemon);
   const pokemonEncounter = await fetchPokemon(`${pokemon}/encounters`);
-  console.log(pokemonEncounter);
 
   if (pokemonData) {
     pokemonImage.style.display = "block";
@@ -252,7 +256,10 @@ const renderPokemon = async function (pokemon) {
     input.value = "";
     serchedPokemon = pokemonData.id;
 
+    
     //StatsBar
+    if (rightDisplayFunction === "status") {
+    
     hpBar.style["width"] =
       Math.round((pokemonData["stats"]["0"]["base_stat"] * 100) / 255) + "%";
     atkBar.style["width"] =
@@ -278,232 +285,241 @@ const renderPokemon = async function (pokemon) {
       pokemonData["stats"]["3"]["base_stat"] +
       pokemonData["stats"]["4"]["base_stat"] +
       pokemonData["stats"]["5"]["base_stat"];
+       console.log("Stats Loaded");
+    }
+    // MOVES
+    if (rightDisplayFunction === "moves") {
+      // Moves API Call
+      const moveList = await Promise.all(
+        Object.keys(pokemonData["moves"]).map(async (moveNumber) => {
+          const moveName = pokemonData["moves"][moveNumber]["move"]["name"];
 
-    // Moves
-    const moveList = await Promise.all(
-      Object.keys(pokemonData["moves"]).map(async (moveNumber) => {
-        const moveName = pokemonData["moves"][moveNumber]["move"]["name"];
+          const moveData = await fetchMove(moveName);
+          const movePower =
+            moveData["power"] !== null ? moveData["power"] : "--- ";
+          const moveAccuracy =
+            moveData["accuracy"] !== null ? moveData["accuracy"] : "--- ";
+          const movePriority =
+            moveData["priority"] !== null ? moveData["priority"] : "--- ";
+          const movePP = moveData["pp"] !== null ? moveData["pp"] : "--- ";
+          const moveEffectChance =
+            moveData["effect_chance"] !== null
+              ? moveData["effect_chance"]
+              : "---";
+          const moveCategory =
+            moveData["damage_class"] !== null
+              ? moveData["damage_class"]["name"]
+              : "--- ";
+          const moveType =
+            moveData["type"] !== null ? moveData["type"]["name"] : "--- ";
+          const moveEffectEntries = moveData["effect_entries"];
+          const moveEffect =
+            moveEffectEntries && moveEffectEntries[0]
+              ? moveEffectEntries[0]["short_effect"].replace(
+                  "$effect_chance%",
+                  moveEffectChance + "%"
+                )
+              : "---";
+          const moveArea =
+            moveData["target"] !== null ? moveData["target"]["name"] : "--- ";
 
-        const moveData = await fetchMove(moveName);
-        const movePower =
-          moveData["power"] !== null ? moveData["power"] : "--- ";
-        const moveAccuracy =
-          moveData["accuracy"] !== null ? moveData["accuracy"] : "--- ";
-        const movePriority =
-          moveData["priority"] !== null ? moveData["priority"] : "--- ";
-        const movePP = moveData["pp"] !== null ? moveData["pp"] : "--- ";
-        const moveEffectChance =
-          moveData["effect_chance"] !== null
-            ? moveData["effect_chance"]
-            : "---";
-        const moveCategory =
-          moveData["damage_class"] !== null
-            ? moveData["damage_class"]["name"]
-            : "--- ";
-        const moveType =
-          moveData["type"] !== null ? moveData["type"]["name"] : "--- ";
-        const moveEffectEntries = moveData["effect_entries"];
-        const moveEffect =
-          moveEffectEntries && moveEffectEntries[0]
-            ? moveEffectEntries[0]["short_effect"].replace(
-                "$effect_chance%",
-                moveEffectChance + "%"
-              )
-            : "---";
-        const moveArea =
-          moveData["target"] !== null ? moveData["target"]["name"] : "--- ";
+          return {
+            moveName,
+            movePower,
+            moveAccuracy,
+            movePriority,
+            movePP,
+            moveEffectChance,
+            moveCategory,
+            moveType,
+            moveEffect,
+            moveArea,
+          };
+        })
+      );
+      // Move Table Render
+      moveList.forEach((move) => {
+        const moveTable = document.createElement("table");
+        moveTable.classList.add("move-table");
 
-        return {
-          moveName,
-          movePower,
-          moveAccuracy,
-          movePriority,
-          movePP,
-          moveEffectChance,
-          moveCategory,
-          moveType,
-          moveEffect,
-          moveArea,
-        };
-      })
-    );
-    encountersContainer.innerHTML = ""; // Limpa o conteúdo anterior
-    movesContainer.innerHTML = ""; // Limpa o conteúdo anterior
+        // Move Name Row
+        const nameRow = moveTable.insertRow();
+        const nameCell = nameRow.insertCell(0);
+        nameCell.colSpan = 2;
+        nameCell.classList.add("move-name");
+        nameCell.style.borderTopRightRadius = "10px";
+        nameCell.style.borderBottomRightRadius = "10px";
+        nameCell.style.borderTopLeftRadius = "10px";
+        nameCell.style.borderBottomLeftRadius = "10px";
+        nameCell.innerHTML =
+          move.moveName.charAt(0).toUpperCase() + move.moveName.slice(1);
 
-    // Move Table Render
-    moveList.forEach((move) => {
-      const moveTable = document.createElement("table");
-      moveTable.classList.add("move-table");
+        // Type Row
+        const typeRow = moveTable.insertRow();
+        const typeCellLabel = typeRow.insertCell(0);
+        const typeCellData = typeRow.insertCell(1);
 
-      // Move Name Row
-      const nameRow = moveTable.insertRow();
-      const nameCell = nameRow.insertCell(0);
-      nameCell.colSpan = 2;
-      nameCell.classList.add("move-name");
-      nameCell.style.borderTopRightRadius = "10px";
-      nameCell.style.borderBottomRightRadius = "10px";
-      nameCell.style.borderTopLeftRadius = "10px";
-      nameCell.style.borderBottomLeftRadius = "10px";
-      nameCell.innerHTML =
-        move.moveName.charAt(0).toUpperCase() + move.moveName.slice(1);
+        typeCellLabel.innerHTML = "Type";
+        typeCellData.innerHTML =
+          move.moveType.charAt(0).toUpperCase() + move.moveType.slice(1);
 
-      // Type Row
-      const typeRow = moveTable.insertRow();
-      const typeCellLabel = typeRow.insertCell(0);
-      const typeCellData = typeRow.insertCell(1);
+        const typeStyle = types[move.moveType];
+        if (typeStyle) {
+          typeCellData.style.backgroundColor = typeStyle.bg;
+          typeCellData.style.borderColor = "#fff";
+          typeCellData.style.color = "#FFF";
+          typeCellLabel.style.backgroundColor = typeStyle.bg;
+          typeCellLabel.style.color = "#FFF";
+          typeCellLabel.style.borderColor = "#fff";
+        }
 
-      typeCellLabel.innerHTML = "Type";
-      typeCellData.innerHTML =
-        move.moveType.charAt(0).toUpperCase() + move.moveType.slice(1);
+        typeCellData.style.borderTopRightRadius = "10px";
+        typeCellData.style.borderBottomRightRadius = "10px";
+        typeCellLabel.style.borderTopLeftRadius = "10px";
+        typeCellLabel.style.borderBottomLeftRadius = "10px";
 
-      const typeStyle = types[move.moveType];
-      if (typeStyle) {
-        typeCellData.style.backgroundColor = typeStyle.bg;
-        typeCellData.style.borderColor = "#fff";
-        typeCellData.style.color = "#FFF";
-        typeCellLabel.style.backgroundColor = typeStyle.bg;
-        typeCellLabel.style.color = "#FFF";
-        typeCellLabel.style.borderColor = "#fff";
-      }
+        // Category Row
+        const categoryRow = moveTable.insertRow();
+        const categoryCellLabel = categoryRow.insertCell(0);
+        const categoryCellData = categoryRow.insertCell(1);
 
-      typeCellData.style.borderTopRightRadius = "10px";
-      typeCellData.style.borderBottomRightRadius = "10px";
-      typeCellLabel.style.borderTopLeftRadius = "10px";
-      typeCellLabel.style.borderBottomLeftRadius = "10px";
+        categoryCellLabel.innerHTML = "Category";
+        categoryCellData.innerHTML =
+          move.moveCategory.charAt(0).toUpperCase() +
+          move.moveCategory.slice(1);
 
-      // Category Row
-      const categoryRow = moveTable.insertRow();
-      const categoryCellLabel = categoryRow.insertCell(0);
-      const categoryCellData = categoryRow.insertCell(1);
+        const categoryStyle = categories[move.moveCategory];
 
-      categoryCellLabel.innerHTML = "Category";
-      categoryCellData.innerHTML =
-        move.moveCategory.charAt(0).toUpperCase() + move.moveCategory.slice(1);
+        if (categoryStyle) {
+          categoryCellData.style.backgroundColor = categoryStyle.bg;
+          categoryCellData.style.color = categoryStyle.fontColor;
+          categoryCellData.style.borderColor = "#fff";
+          categoryCellLabel.style.backgroundColor = categoryStyle.bg;
+          categoryCellLabel.style.color = "#FFF";
+          categoryCellLabel.style.borderColor = "#fff";
+        }
 
-      const categoryStyle = categories[move.moveCategory];
+        categoryCellData.style.borderTopRightRadius = "10px";
+        categoryCellData.style.borderBottomRightRadius = "10px";
+        categoryCellLabel.style.borderTopLeftRadius = "10px";
+        categoryCellLabel.style.borderBottomLeftRadius = "10px";
 
-      if (categoryStyle) {
-        categoryCellData.style.backgroundColor = categoryStyle.bg;
-        categoryCellData.style.color = categoryStyle.fontColor;
-        categoryCellData.style.borderColor = "#fff";
-        categoryCellLabel.style.backgroundColor = categoryStyle.bg;
-        categoryCellLabel.style.color = "#FFF";
-        categoryCellLabel.style.borderColor = "#fff";
-      }
+        // Power Row
+        const powerRow = moveTable.insertRow();
+        const powerCellLabel = powerRow.insertCell(0);
+        const powerCellData = powerRow.insertCell(1);
+        powerCellLabel.innerHTML = "Power";
+        powerCellData.innerHTML = move.movePower;
 
-      categoryCellData.style.borderTopRightRadius = "10px";
-      categoryCellData.style.borderBottomRightRadius = "10px";
-      categoryCellLabel.style.borderTopLeftRadius = "10px";
-      categoryCellLabel.style.borderBottomLeftRadius = "10px";
+        powerCellData.style.borderTopRightRadius = "10px";
+        powerCellLabel.style.borderTopLeftRadius = "10px";
 
-      // Power Row
-      const powerRow = moveTable.insertRow();
-      const powerCellLabel = powerRow.insertCell(0);
-      const powerCellData = powerRow.insertCell(1);
-      powerCellLabel.innerHTML = "Power";
-      powerCellData.innerHTML = move.movePower;
+        // PP Row
+        const PPRow = moveTable.insertRow();
 
-      powerCellData.style.borderTopRightRadius = "10px";
-      powerCellLabel.style.borderTopLeftRadius = "10px";
+        PPRow.insertCell(0).innerHTML = "PP";
+        PPRow.insertCell(1).innerHTML = move.movePP;
 
-      // PP Row
-      const PPRow = moveTable.insertRow();
+        // Accuracy Row
+        const accuracyRow = moveTable.insertRow();
 
-      PPRow.insertCell(0).innerHTML = "PP";
-      PPRow.insertCell(1).innerHTML = move.movePP;
+        accuracyRow.insertCell(0).innerHTML = "Accuracy:";
+        accuracyRow.insertCell(1).innerHTML = `${move.moveAccuracy}%`;
 
-      // Accuracy Row
-      const accuracyRow = moveTable.insertRow();
+        // Area Row
+        const areaRow = moveTable.insertRow();
 
-      accuracyRow.insertCell(0).innerHTML = "Accuracy:";
-      accuracyRow.insertCell(1).innerHTML = `${move.moveAccuracy}%`;
+        areaRow.insertCell(0).innerHTML = "Target";
+        areaRow.insertCell(1).innerHTML =
+          move.moveArea.charAt(0).toUpperCase() + move.moveArea.slice(1);
 
-      // Area Row
-      const areaRow = moveTable.insertRow();
+        // Effect Row
+        const effectRow = moveTable.insertRow();
+        const effectCellLabel = effectRow.insertCell(0);
+        const effectCellData = effectRow.insertCell(1);
 
-      areaRow.insertCell(0).innerHTML = "Target";
-      areaRow.insertCell(1).innerHTML =
-        move.moveArea.charAt(0).toUpperCase() + move.moveArea.slice(1);
+        effectCellLabel.innerHTML = "Effect";
+        effectCellData.innerHTML = move.moveEffect;
 
-      // Effect Row
-      const effectRow = moveTable.insertRow();
-      const effectCellLabel = effectRow.insertCell(0);
-      const effectCellData = effectRow.insertCell(1);
+        effectCellData.style.borderBottomRightRadius = "10px";
+        effectCellLabel.style.borderBottomLeftRadius = "10px";
 
-      effectCellLabel.innerHTML = "Effect";
-      effectCellData.innerHTML = move.moveEffect;
+        // Append the table to the container
+        movesContainer.appendChild(moveTable);
+      });
+       console.log("Moves Loaded");
+    }
 
-      effectCellData.style.borderBottomRightRadius = "10px";
-      effectCellLabel.style.borderBottomLeftRadius = "10px";
+    // ENCOUNTER
+    if(rightDisplayFunction === "encounter"){
+      const versionTables = {};
+      // Enconter Table Render
+      if (pokemonEncounter.length > 0){
+      pokemonEncounter.forEach((encounter) => {
+        encounter.version_details.forEach((versionDetail) => {
+          const versionName = versionDetail.version.name.toLowerCase();
 
-      // Append the table to the container
-      movesContainer.appendChild(moveTable);
-    });
+          // Verifica se a versão está na lista games
+          if (games[versionName]) {
+            // Verifica se a versão já foi processada
+            if (!versionTables[versionName]) {
+              // Cria uma nova tabela se a versão ainda não foi processada
+              const encounterTable = document.createElement("table");
+              encounterTable.classList.add("encounter-table");
 
-    // Objeto para rastrear versões e tabelas correspondentes
-    const versionTables = {};
+              // Adiciona a tabela ao objeto versionTables
+              versionTables[versionName] = encounterTable;
 
-    // Enconter Table Render
-    pokemonEncounter.forEach((encounter) => {
-      encounter.version_details.forEach((versionDetail) => {
-        const versionName = versionDetail.version.name.toLowerCase();
+              // Adiciona a versão à tabela
+              const versionRow = encounterTable.insertRow();
+              const versionCell = versionRow.insertCell(0);
+              versionCell.colSpan = 2;
+              versionCell.classList.add("encounter-version");
+              versionCell.innerHTML = versionName.toUpperCase();
 
-        // Verifica se a versão está na lista games
-        if (games[versionName]) {
-          // Verifica se a versão já foi processada
-          if (!versionTables[versionName]) {
-            // Cria uma nova tabela se a versão ainda não foi processada
-            const encounterTable = document.createElement("table");
-            encounterTable.classList.add("encounter-table");
+              const versionStyle = games[versionName];
 
-            // Adiciona a tabela ao objeto versionTables
-            versionTables[versionName] = encounterTable;
+              if (versionStyle) {
+                versionCell.style.backgroundColor = versionStyle.bg;
+                versionCell.style.color = versionStyle.fontColor;
+                versionCell.style.borderColor = versionStyle.border;
+              }
 
-            // Adiciona a versão à tabela
-            const versionRow = encounterTable.insertRow();
-            const versionCell = versionRow.insertCell(0);
-            versionCell.colSpan = 2;
-            versionCell.classList.add("encounter-version");
-            versionCell.innerHTML = versionName.toUpperCase();
-
-            const versionStyle = games[versionName];
-
-            if (versionStyle) {
-              versionCell.style.backgroundColor = versionStyle.bg;
-              versionCell.style.color = versionStyle.fontColor;
-              versionCell.style.borderColor = versionStyle.border;
+              versionCell.style.borderRadius = "10px";
             }
 
-            versionCell.style.borderRadius = "10px";
+            // Adiciona a location_area à tabela correspondente
+            const encounterTable = versionTables[versionName];
+
+            const locationRow = encounterTable.insertRow();
+            const locationCell = locationRow.insertCell(0);
+            locationCell.colSpan = 2;
+            locationCell.classList.add("encounter-location");
+            
+            locationCell.innerHTML = encounter.location_area.name.toUpperCase();
+            locationCell.style.borderTop = "5px solid rgb(83 83 83)";
+
+            // Method Row
+            const methodRow = encounterTable.insertRow();
+            const methodCellLabel = methodRow.insertCell(0);
+            const methodCellData = methodRow.insertCell(1);
+
+            methodCellLabel.innerHTML = "Method";
+            methodCellData.innerHTML =
+              versionDetail.encounter_details[0].method.name;
           }
-
-          // Adiciona a location_area à tabela correspondente
-          const encounterTable = versionTables[versionName];
-
-          const locationRow = encounterTable.insertRow();
-          const locationCell = locationRow.insertCell(0);
-          locationCell.colSpan = 2;
-          locationCell.classList.add("encounter-location");
-          locationCell.innerHTML = encounter.location_area.name.toUpperCase();
-          locationCell.style.borderTop = "5px solid rgb(83 83 83)";
-
-          // Method Row
-          const methodRow = encounterTable.insertRow();
-          const methodCellLabel = methodRow.insertCell(0);
-          const methodCellData = methodRow.insertCell(1);
-
-          methodCellLabel.innerHTML = "Method";
-          methodCellData.innerHTML =
-            versionDetail.encounter_details[0].method.name;
-
-        }
+        });
       });
-    });
+      // Adiciona as tabelas ao container
+      Object.values(versionTables).forEach((table) => {
+        encountersContainer.appendChild(table);
+      });
+    }else{
+        encountersContainer.innerHTML = "Trade or Evolve";
 
-    // Adiciona as tabelas ao container
-    Object.values(versionTables).forEach((table) => {
-      encountersContainer.appendChild(table);
-    });
+    }
+      console.log("Encounters Loaded");
+    }
   } else {
     pokemonImage.style.display = "none";
     pokemonStatsContainer.style.display = "none";
@@ -560,6 +576,8 @@ const rightDisplayFunctionStatus = function () {
   rightDisplay2.style.display = "none";
   rightDisplay3.style.display = "none";
   rightDisplay4.style.display = "none";
+  renderPokemon(serchedPokemon);
+  rightDisplayFunction = "status";
 };
 buttonStats.addEventListener("click", rightDisplayFunctionStatus);
 
@@ -578,6 +596,8 @@ const rightDisplayFunctionAbility = function () {
   rightDisplay2.style.display = "none";
   rightDisplay3.style.display = "none";
   rightDisplay4.style.display = "flex";
+  renderPokemon(serchedPokemon);
+  rightDisplayFunction = "ability"
 };
 buttonAbility.addEventListener("click", rightDisplayFunctionAbility);
 
@@ -596,6 +616,8 @@ const rightDisplayFunctionMoves = function () {
   rightDisplay2.style.display = "flex";
   rightDisplay3.style.display = "none";
   rightDisplay4.style.display = "none";
+  renderPokemon(serchedPokemon);
+  rightDisplayFunction = "moves";
 };
 buttonMoves.addEventListener("click", rightDisplayFunctionMoves);
 
@@ -614,5 +636,7 @@ const rightDisplayFunctionEncounter = function () {
   rightDisplay2.style.display = "none";
   rightDisplay3.style.display = "flex";
   rightDisplay4.style.display = "none";
+  renderPokemon(serchedPokemon);
+  rightDisplayFunction = "encounter";
 };
 buttonEncounter.addEventListener("click", rightDisplayFunctionEncounter);
