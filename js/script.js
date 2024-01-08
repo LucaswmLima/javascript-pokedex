@@ -476,6 +476,7 @@ const renderPokemon = async function (pokemon) {
               versionCell.colSpan = 2;
               versionCell.classList.add("encounter-version");
               versionCell.innerHTML = versionName.toUpperCase();
+              versionCell.style.textAlign = "center"
 
               const versionStyle = games[versionName];
 
@@ -498,6 +499,8 @@ const renderPokemon = async function (pokemon) {
             
             locationCell.innerHTML = encounter.location_area.name.toUpperCase();
             locationCell.style.borderTop = "5px solid rgb(83 83 83)";
+            locationCell.style.borderRight = "0px";
+            locationCell.style.borderLeft = "0px";
 
             // Method Row
             const methodRow = encounterTable.insertRow();
