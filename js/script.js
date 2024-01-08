@@ -626,6 +626,7 @@ const renderPokemon = async function (pokemon) {
       });
     }else{
         encountersContainer.innerHTML = "Trade or Evolve";
+        encountersContainer.style.textAlign = "center";
 
     }
       console.log("Encounters Loaded");
