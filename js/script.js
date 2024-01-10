@@ -50,10 +50,10 @@ const types = {
   dark: { name: "Dark", bg: "#705848", border: "#49392F", resist: { dark: 0.5, ghost: 0.5 }, immune: { psychic: 0 }, weakness: { bug: 2, fairy: 2, fighting: 2 } },
   steel: { name: "Steel", bg: "#B8B8D0", border: "#787887", resist: { bug: 0.5, dragon: 0.5, fairy: 0.5, flying: 0.5, grass: 0.5, ice: 0.5, normal: 0.5, psychic: 0.5, rock: 0.5, steel: 0.5 }, immune: { poison: 0 }, weakness: { fighting: 2, fire: 2, ground: 2 } },
   fairy: { name: "Fairy", bg: "#EE99AC", border: "#9B6470", resist: { bug: 0.5, dark: 0.5, fighting: 0.5 }, immune: { dragon: 0 }, weakness: { poison: 2, steel: 2 } },
-  stellar: { name: "Stellar", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} },
-  "???": { name: "???", bg: "#68A090", border: "#44685E", resist: {}, immune: {}, weakness: {} },
-  null: { name: "???", bg: "#68A090", border: "#44685E", resist: {}, immune: {}, weakness: {} },
-  undefined: { name: "???", bg: "#68A090", border: "#44685E", resist: {}, immune: {}, weakness: {} },
+  stellar: { name: "Stellar", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
+  "???": { name: "???", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
+  undefined: { name: "???", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
+  null: { name: "???", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
 };
 
 const categories = {
@@ -637,9 +637,6 @@ const renderPokemon = async function (pokemon) {
     pokemonName.innerHTML = "Not Found :(";
     pokemonNumber.innerHTML = "";
   }
-
-  
-
 
 };
 
