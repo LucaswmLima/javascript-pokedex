@@ -515,6 +515,11 @@ function createTypeCell(infoTable, pokemonTypes) {
 
   const typeCellData = typeRow.insertCell(1);
   typeCellData.style.width = "70%"; // Ajustar a largura conforme necessário
+  typeCellData.style.borderBottomRightRadius = "10px";
+  typeCellLabel.style.borderBottomLeftRadius = "10px";
+  typeCellData.style.borderTopRightRadius = "10px";
+  typeCellLabel.style.borderTopLeftRadius = "10px";
+
 
   // Cria uma div para cada tipo e a adiciona à célula
   for (const type of pokemonTypes) {
@@ -526,7 +531,8 @@ function createTypeCell(infoTable, pokemonTypes) {
       typeBadge.style.background = typeStyle.bg;
       typeBadge.style.color = "#FFF";
       typeBadge.style.padding = "3px 6px"; // Ajuste o espaçamento aqui
-      typeBadge.style.marginRight = "5px"; // Adiciona um pequeno espaço entre as plaquinhas
+      typeBadge.style.marginRight = "3px"; // Adiciona um pequeno espaço entre as plaquinhas
+      typeBadge.style.marginbottom = "3px"; // Adiciona um pequeno espaço entre as plaquinhas
       typeBadge.style.borderRadius = "10px";
       typeBadge.style.display = "inline-block";
 
@@ -546,9 +552,17 @@ function createDamageRelationCell(infoTable, title, damageRelationTypes) {
   const labelCell = row.insertCell(0);
   labelCell.style.width = "30%"; // Ajustar a largura conforme necessário
   labelCell.innerHTML = title;
+  labelCell.style.borderTopRightRadius = "0px";
+  labelCell.style.borderBottomRightRadius = "0px";
+  labelCell.style.borderTopLeftRadius = "10px";
+  labelCell.style.borderBottomLeftRadius = "10px";
 
   const dataCell = row.insertCell(1);
   dataCell.style.width = "70%"; // Ajustar a largura conforme necessário
+  dataCell.style.borderTopRightRadius = "10px";
+  dataCell.style.borderBottomRightRadius = "10px";
+  dataCell.style.borderTopLeftRadius = "0px";
+  dataCell.style.borderBottomLeftRadius = "0px";
 
   // Cria uma div para cada tipo e a adiciona à célula
   for (const type of damageRelationTypes) {
@@ -558,8 +572,10 @@ function createDamageRelationCell(infoTable, title, damageRelationTypes) {
       const typeBadge = document.createElement("div");
       let multiplierText;
 
-      // Tratamento especial para "Resistant To"
-      if (title === "Resistant To:") {
+      // Tratamento especial para "Immune To"
+      if (title === "Immune To:") {
+        multiplierText = "0x";
+      } else if (title === "Resistant To:") {
         multiplierText = type.multiplier === 2 ? "½x" : "¼x";
       } else {
         multiplierText = type.multiplier === 2 ? "2x" : type.multiplier === 4 ? "4x" : `${type.multiplier}x`;
@@ -574,6 +590,7 @@ function createDamageRelationCell(infoTable, title, damageRelationTypes) {
         typeBadge.style.color = "#FFF";
         typeBadge.style.padding = "3px 6px"; // Ajuste o espaçamento aqui
         typeBadge.style.marginRight = "5px"; // Adiciona um pequeno espaço entre as plaquinhas
+        typeBadge.style.marginBottom = "5px"; // Adiciona um pequeno espaço entre as plaquinhas
         typeBadge.style.borderRadius = "10px";
         typeBadge.style.display = "inline-block";
 
@@ -913,18 +930,19 @@ const renderPokemon = async function (pokemon) {
       // Info Name Row nameCell
       nameCellLabel.colSpan = 1;
       nameCellLabel.classList.add("info-numberCell");
+      nameCellLabel.innerHTML = "Name";
       nameCellLabel.style.borderTopRightRadius = "0px";
       nameCellLabel.style.borderBottomRightRadius = "0px";
       nameCellLabel.style.borderTopLeftRadius = "10px";
       nameCellLabel.style.borderBottomLeftRadius = "10px";
-      nameCellLabel.innerHTML = "Name";
       // Info Name Row nameData
-      nameCellData.colSpan = 1;
+      nameCellData.colSpaname
       nameCellData.classList.add("info-nameData");
       nameCellData.style.borderTopRightRadius = "10px";
       nameCellData.style.borderBottomRightRadius = "10px";
       nameCellData.style.borderTopLeftRadius = "0px";
       nameCellData.style.borderBottomLeftRadius = "0px";
+
       nameCellData.innerHTML = pokemonData.name;
 
       // Cria e estiliza a célula de tipo
@@ -936,6 +954,11 @@ const renderPokemon = async function (pokemon) {
       const resistTitleLabel = resistRowTitle.insertCell(0);
       resistTitleLabel.colSpan = 2;
       resistTitleLabel.innerHTML = "Type effectiveness";
+      resistTitleLabel.style.textAlign = "center"
+      resistTitleLabel.style.borderTopRightRadius = "10px";
+      resistTitleLabel.style.borderBottomRightRadius = "10px";
+      resistTitleLabel.style.borderTopLeftRadius = "10px";
+      resistTitleLabel.style.borderBottomLeftRadius = "10px";
 
       // Resists Map
       const damageRelationsPromises = pokemonData.types.map(async (type) => {
