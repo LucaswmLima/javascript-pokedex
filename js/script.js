@@ -30,30 +30,188 @@ const totalNumber = document.querySelector(".totalNumber");
 const pokemonMoves = document.querySelector(".pokemonMoves");
 const movesContainer = document.getElementById("movesContainer");
 const encountersContainer = document.getElementById("encounterContainer");
+const infoContainer = document.getElementById("infoContainer");
 
 const types = {
-  normal: { name: "Normal", bg: "#A8A878", border: "#6D6D4E", resist: {}, immune: {}, weakness: { fighting: 2 } },
-  fire: { name: "Fire", bg: "#F08030", border: "#9C531F", resist: { fire: 0.5, ice: 0.5, bug: 2, grass: 2, steel: 2, fairy: 2 }, immune: {}, weakness: { water: 2, rock: 2, ground: 2 } },
-  fighting: { name: "Fighting", bg: "#C03028", border: "#7D1F1A", resist: { bug: 0.5, dark: 0.5, rock: 0.5 }, immune: { ghost: 0 }, weakness: { flying: 2, psychic: 2, fairy: 2 } },
-  water: { name: "Water", bg: "#6890F0", border: "#445E9C", resist: { fire: 0.5, ice: 0.5, steel: 0.5, electric: 0.5 }, immune: {}, weakness: { grass: 2, electric: 2, rock: 2, ground: 2 } },
-  flying: { name: "Flying", bg: "#A890F0", border: "#6D5E9C", resist: { fighting: 0.5, bug: 0.5, grass: 0.5 }, immune: { ground: 0 }, weakness: { rock: 2, electric: 2, ice: 2 } },
-  grass: { name: "Grass", bg: "#78C850", border: "#4E8234", resist: { water: 0.5, electric: 0.5, ground: 0.5 }, immune: {}, weakness: { fire: 2, ice: 2, poison: 2, flying: 2 } },
-  poison: { name: "Poison", bg: "#A040A0", border: "#682A68", resist: { fighting: 0.5, poison: 0.5, bug: 0.5, fairy: 0.5, grass: 2 }, immune: {}, weakness: { ground: 2, psychic: 2 } },
-  electric: { name: "Electric", bg: "#F8D030", border: "#A1871F", resist: { electric: 0.5, ground: 2 }, immune: {}, weakness: { ground: 0.5 } },
-  ground: { name: "Ground", bg: "#E0C068", border: "#927D44", resist: { poison: 0.5, rock: 0.5, electric: 0.5 }, immune: { electric: 0 }, weakness: { ice: 2, grass: 2, water: 2 } },
-  psychic: { name: "Psychic", bg: "#F85888", border: "#A13959", resist: { fighting: 2, psychic: 0.5, dark: 0.5 }, immune: {}, weakness: { bug: 2, ghost: 2 } },
-  rock: { name: "Rock", bg: "#B8A038", border: "#786824", resist: { normal: 0.5, fire: 0.5, poison: 0.5, flying: 0.5 }, immune: {}, weakness: { fighting: 2, grass: 2, ground: 2, steel: 2, water: 2 } },
-  ice: { name: "Ice", bg: "#98D8D8", border: "#638D8D", resist: { ice: 0.5 }, immune: {}, weakness: { fighting: 2, fire: 2, rock: 2, steel: 2 } },
-  bug: { name: "Bug", bg: "#A8B820", border: "#6D7815", resist: { fighting: 0.5, ground: 0.5, grass: 0.5 }, immune: {}, weakness: { fire: 2, flying: 2, rock: 2 } },
-  dragon: { name: "Dragon", bg: "#7038F8", border: "#4924A1", resist: { electric: 0.5, fire: 0.5, grass: 0.5, water: 0.5 }, immune: {}, weakness: { dragon: 2, fairy: 2, ice: 2 }},
-  ghost: { name: "Ghost", bg: "#705898", border: "#493963", resist: { bug: 0.5, poison: 0.5 }, immune: { normal: 0, fighting: 0 }, weakness: { dark: 2, ghost: 2 } },
-  dark: { name: "Dark", bg: "#705848", border: "#49392F", resist: { dark: 0.5, ghost: 0.5 }, immune: { psychic: 0 }, weakness: { bug: 2, fairy: 2, fighting: 2 } },
-  steel: { name: "Steel", bg: "#B8B8D0", border: "#787887", resist: { bug: 0.5, dragon: 0.5, fairy: 0.5, flying: 0.5, grass: 0.5, ice: 0.5, normal: 0.5, psychic: 0.5, rock: 0.5, steel: 0.5 }, immune: { poison: 0 }, weakness: { fighting: 2, fire: 2, ground: 2 } },
-  fairy: { name: "Fairy", bg: "#EE99AC", border: "#9B6470", resist: { bug: 0.5, dark: 0.5, fighting: 0.5 }, immune: { dragon: 0 }, weakness: { poison: 2, steel: 2 } },
-  stellar: { name: "Stellar", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
-  "???": { name: "???", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
-  undefined: { name: "???", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
-  null: { name: "???", bg: "#7CC7B2", border: "#518174", resist: { resist: {}, immune: {}, weakness: {} }},
+  normal: {
+    name: "Normal",
+    bg: "#A8A878",
+    border: "#6D6D4E",
+    resist: {},
+    immune: {},
+    weakness: { fighting: 2 },
+  },
+  fire: {
+    name: "Fire",
+    bg: "#F08030",
+    border: "#9C531F",
+    resist: { fire: 0.5, ice: 0.5, bug: 2, grass: 2, steel: 2, fairy: 2 },
+    immune: {},
+    weakness: { water: 2, rock: 2, ground: 2 },
+  },
+  fighting: {
+    name: "Fighting",
+    bg: "#C03028",
+    border: "#7D1F1A",
+    resist: { bug: 0.5, dark: 0.5, rock: 0.5 },
+    immune: { ghost: 0 },
+    weakness: { flying: 2, psychic: 2, fairy: 2 },
+  },
+  water: {
+    name: "Water",
+    bg: "#6890F0",
+    border: "#445E9C",
+    resist: { fire: 0.5, ice: 0.5, steel: 0.5, electric: 0.5 },
+    immune: {},
+    weakness: { grass: 2, electric: 2, rock: 2, ground: 2 },
+  },
+  flying: {
+    name: "Flying",
+    bg: "#A890F0",
+    border: "#6D5E9C",
+    resist: { fighting: 0.5, bug: 0.5, grass: 0.5 },
+    immune: { ground: 0 },
+    weakness: { rock: 2, electric: 2, ice: 2 },
+  },
+  grass: {
+    name: "Grass",
+    bg: "#78C850",
+    border: "#4E8234",
+    resist: { water: 0.5, electric: 0.5, ground: 0.5 },
+    immune: {},
+    weakness: { fire: 2, ice: 2, poison: 2, flying: 2 },
+  },
+  poison: {
+    name: "Poison",
+    bg: "#A040A0",
+    border: "#682A68",
+    resist: { fighting: 0.5, poison: 0.5, bug: 0.5, fairy: 0.5, grass: 2 },
+    immune: {},
+    weakness: { ground: 2, psychic: 2 },
+  },
+  electric: {
+    name: "Electric",
+    bg: "#F8D030",
+    border: "#A1871F",
+    resist: { electric: 0.5, ground: 2 },
+    immune: {},
+    weakness: { ground: 0.5 },
+  },
+  ground: {
+    name: "Ground",
+    bg: "#E0C068",
+    border: "#927D44",
+    resist: { poison: 0.5, rock: 0.5, electric: 0.5 },
+    immune: { electric: 0 },
+    weakness: { ice: 2, grass: 2, water: 2 },
+  },
+  psychic: {
+    name: "Psychic",
+    bg: "#F85888",
+    border: "#A13959",
+    resist: { fighting: 2, psychic: 0.5, dark: 0.5 },
+    immune: {},
+    weakness: { bug: 2, ghost: 2 },
+  },
+  rock: {
+    name: "Rock",
+    bg: "#B8A038",
+    border: "#786824",
+    resist: { normal: 0.5, fire: 0.5, poison: 0.5, flying: 0.5 },
+    immune: {},
+    weakness: { fighting: 2, grass: 2, ground: 2, steel: 2, water: 2 },
+  },
+  ice: {
+    name: "Ice",
+    bg: "#98D8D8",
+    border: "#638D8D",
+    resist: { ice: 0.5 },
+    immune: {},
+    weakness: { fighting: 2, fire: 2, rock: 2, steel: 2 },
+  },
+  bug: {
+    name: "Bug",
+    bg: "#A8B820",
+    border: "#6D7815",
+    resist: { fighting: 0.5, ground: 0.5, grass: 0.5 },
+    immune: {},
+    weakness: { fire: 2, flying: 2, rock: 2 },
+  },
+  dragon: {
+    name: "Dragon",
+    bg: "#7038F8",
+    border: "#4924A1",
+    resist: { electric: 0.5, fire: 0.5, grass: 0.5, water: 0.5 },
+    immune: {},
+    weakness: { dragon: 2, fairy: 2, ice: 2 },
+  },
+  ghost: {
+    name: "Ghost",
+    bg: "#705898",
+    border: "#493963",
+    resist: { bug: 0.5, poison: 0.5 },
+    immune: { normal: 0, fighting: 0 },
+    weakness: { dark: 2, ghost: 2 },
+  },
+  dark: {
+    name: "Dark",
+    bg: "#705848",
+    border: "#49392F",
+    resist: { dark: 0.5, ghost: 0.5 },
+    immune: { psychic: 0 },
+    weakness: { bug: 2, fairy: 2, fighting: 2 },
+  },
+  steel: {
+    name: "Steel",
+    bg: "#B8B8D0",
+    border: "#787887",
+    resist: {
+      bug: 0.5,
+      dragon: 0.5,
+      fairy: 0.5,
+      flying: 0.5,
+      grass: 0.5,
+      ice: 0.5,
+      normal: 0.5,
+      psychic: 0.5,
+      rock: 0.5,
+      steel: 0.5,
+    },
+    immune: { poison: 0 },
+    weakness: { fighting: 2, fire: 2, ground: 2 },
+  },
+  fairy: {
+    name: "Fairy",
+    bg: "#EE99AC",
+    border: "#9B6470",
+    resist: { bug: 0.5, dark: 0.5, fighting: 0.5 },
+    immune: { dragon: 0 },
+    weakness: { poison: 2, steel: 2 },
+  },
+  stellar: {
+    name: "Stellar",
+    bg: "#7CC7B2",
+    border: "#518174",
+    resist: { resist: {}, immune: {}, weakness: {} },
+  },
+  "???": {
+    name: "???",
+    bg: "#7CC7B2",
+    border: "#518174",
+    resist: { resist: {}, immune: {}, weakness: {} },
+  },
+  undefined: {
+    name: "???",
+    bg: "#7CC7B2",
+    border: "#518174",
+    resist: { resist: {}, immune: {}, weakness: {} },
+  },
+  null: {
+    name: "???",
+    bg: "#7CC7B2",
+    border: "#518174",
+    resist: { resist: {}, immune: {}, weakness: {} },
+  },
 };
 
 const categories = {
@@ -337,18 +495,122 @@ const fetchMove = async function (pokemon) {
   }
 };
 
+// Função para criar e estilizar a célula de tipo
+function createTypeCell(infoTable, pokemonTypes) {
+  const typeRow = infoTable.insertRow();
 
+  const typeCellLabel = typeRow.insertCell(0);
+  typeCellLabel.style.width = "30%"; // Ajustar a largura conforme necessário
+  typeCellLabel.innerHTML = "Type";
+
+  const typeCellData = typeRow.insertCell(1);
+  typeCellData.style.width = "70%"; // Ajustar a largura conforme necessário
+
+  // Cria uma div para cada tipo e a adiciona à célula
+  for (const type of pokemonTypes) {
+    const typeBadge = document.createElement("div");
+    typeBadge.innerHTML = type;
+
+    const typeStyle = types[type];
+    if (typeStyle) {
+      typeBadge.style.background = typeStyle.bg;
+      typeBadge.style.color = "#FFF";
+      typeBadge.style.padding = "3px 6px"; // Ajuste o espaçamento aqui
+      typeBadge.style.marginRight = "5px"; // Adiciona um pequeno espaço entre as plaquinhas
+      typeBadge.style.borderRadius = "10px";
+      typeBadge.style.display = "inline-block";
+
+      typeCellData.appendChild(typeBadge);
+    }
+  }
+
+  // Adiciona um estilo adicional para o background da célula
+  typeRow.style.background = types[pokemonTypes[0]].bg; // Use a cor do primeiro tipo para o background
+  typeRow.style.borderRadius = "10px";
+}
+
+// Função para calcular e exibir os tipos que causam dano normal
+function displayNormalDamage(infoTable, pokemonTypes) {
+  const normalDamageRow = infoTable.insertRow();
+  const normalDamageCellLabel = normalDamageRow.insertCell(0);
+  const normalDamageCellData = normalDamageRow.insertCell(1);
+  normalDamageCellLabel.innerHTML = "Damaged normally by:";
+
+  let normalDamageString = "";
+  for (const type of pokemonTypes) {
+    normalDamageString += type + " ";
+  }
+
+  normalDamageCellData.innerHTML = normalDamageString.trim();
+}
+
+// Função para calcular e exibir os tipos resistentes
+function displayResistances(infoTable, pokemonTypes) {
+  const resistancesRow = infoTable.insertRow();
+  const resistancesCellLabel = resistancesRow.insertCell(0);
+  const resistancesCellData = resistancesRow.insertCell(1);
+  resistancesCellLabel.innerHTML = "Resistant to:";
+
+  let resistancesString = "";
+  for (const type of pokemonTypes) {
+    const typeResistances = types[type].resist;
+    for (const resistanceType in typeResistances) {
+      if (typeResistances[resistanceType] === 2) {
+        resistancesString += resistanceType + " ";
+      }
+    }
+  }
+
+  resistancesCellData.innerHTML = resistancesString.trim();
+}
+
+// Função para calcular e exibir os tipos imunes
+function displayImmunities(infoTable, pokemonTypes) {
+  const immunitiesRow = infoTable.insertRow();
+  const immunitiesCellLabel = immunitiesRow.insertCell(0);
+  const immunitiesCellData = immunitiesRow.insertCell(1);
+  immunitiesCellLabel.innerHTML = "Immune to:";
+
+  let immunitiesString = "";
+  for (const type of pokemonTypes) {
+    const typeImmunities = types[type].immune;
+    immunitiesString += Object.keys(typeImmunities).join(" ");
+  }
+
+  immunitiesCellData.innerHTML = immunitiesString.trim();
+}
+
+// Função para calcular e exibir os tipos fracos
+function displayWeaknesses(infoTable, pokemonTypes) {
+  const weaknessesRow = infoTable.insertRow();
+  const weaknessesCellLabel = weaknessesRow.insertCell(0);
+  const weaknessesCellData = weaknessesRow.insertCell(1);
+  weaknessesCellLabel.innerHTML = "Weak to:";
+
+  let weaknessesString = "";
+  for (const type of pokemonTypes) {
+    const typeWeaknesses = types[type].weakness;
+    for (const weaknessType in typeWeaknesses) {
+      if (typeWeaknesses[weaknessType] === 2) {
+        weaknessesString += weaknessType + " ";
+      }
+    }
+  }
+
+  weaknessesCellData.innerHTML = weaknessesString.trim();
+}
 // Apply the search changed on screen
 const renderPokemon = async function (pokemon) {
   pokemonName.innerHTML = "Loading...";
   encountersContainer.innerHTML = "Loading...";
   movesContainer.innerHTML = "Loading...";
+  infoContainer.innerHTML = "Loading...";
   pokemonNumber.innerHTML = "";
   encountersContainer.innerHTML = "";
   movesContainer.innerHTML = "";
+  infoContainer.innerHTML = "";
 
   const pokemonData = await fetchPokemon(pokemon);
-  const pokemonEncounter = await fetchPokemon(`${pokemon}/encounters`);
 
   if (pokemonData) {
     pokemonImage.style.display = "block";
@@ -363,36 +625,34 @@ const renderPokemon = async function (pokemon) {
     input.value = "";
     serchedPokemon = pokemonData.id;
 
-    
     //StatsBar
     if (rightDisplayFunction === "status") {
-    
-    hpBar.style["width"] =
-      Math.round((pokemonData["stats"]["0"]["base_stat"] * 100) / 255) + "%";
-    atkBar.style["width"] =
-      Math.round((pokemonData["stats"]["1"]["base_stat"] * 100) / 255) + "%";
-    defBar.style["width"] =
-      Math.round((pokemonData["stats"]["2"]["base_stat"] * 100) / 255) + "%";
-    spAtkBar.style["width"] =
-      Math.round((pokemonData["stats"]["3"]["base_stat"] * 100) / 255) + "%";
-    spDefBar.style["width"] =
-      Math.round((pokemonData["stats"]["4"]["base_stat"] * 100) / 255) + "%";
-    speedBar.style["width"] =
-      Math.round((pokemonData["stats"]["5"]["base_stat"] * 100) / 255) + "%";
-    hpNumber.innerHTML = pokemonData["stats"]["0"]["base_stat"];
-    atkNumber.innerHTML = pokemonData["stats"]["1"]["base_stat"];
-    defNumber.innerHTML = pokemonData["stats"]["2"]["base_stat"];
-    spAtkNumber.innerHTML = pokemonData["stats"]["3"]["base_stat"];
-    spDefNumber.innerHTML = pokemonData["stats"]["4"]["base_stat"];
-    speedNumber.innerHTML = pokemonData["stats"]["5"]["base_stat"];
-    totalNumber.innerHTML =
-      pokemonData["stats"]["0"]["base_stat"] +
-      pokemonData["stats"]["1"]["base_stat"] +
-      pokemonData["stats"]["2"]["base_stat"] +
-      pokemonData["stats"]["3"]["base_stat"] +
-      pokemonData["stats"]["4"]["base_stat"] +
-      pokemonData["stats"]["5"]["base_stat"];
-       console.log("Stats Loaded");
+      hpBar.style["width"] =
+        Math.round((pokemonData["stats"]["0"]["base_stat"] * 100) / 255) + "%";
+      atkBar.style["width"] =
+        Math.round((pokemonData["stats"]["1"]["base_stat"] * 100) / 255) + "%";
+      defBar.style["width"] =
+        Math.round((pokemonData["stats"]["2"]["base_stat"] * 100) / 255) + "%";
+      spAtkBar.style["width"] =
+        Math.round((pokemonData["stats"]["3"]["base_stat"] * 100) / 255) + "%";
+      spDefBar.style["width"] =
+        Math.round((pokemonData["stats"]["4"]["base_stat"] * 100) / 255) + "%";
+      speedBar.style["width"] =
+        Math.round((pokemonData["stats"]["5"]["base_stat"] * 100) / 255) + "%";
+      hpNumber.innerHTML = pokemonData["stats"]["0"]["base_stat"];
+      atkNumber.innerHTML = pokemonData["stats"]["1"]["base_stat"];
+      defNumber.innerHTML = pokemonData["stats"]["2"]["base_stat"];
+      spAtkNumber.innerHTML = pokemonData["stats"]["3"]["base_stat"];
+      spDefNumber.innerHTML = pokemonData["stats"]["4"]["base_stat"];
+      speedNumber.innerHTML = pokemonData["stats"]["5"]["base_stat"];
+      totalNumber.innerHTML =
+        pokemonData["stats"]["0"]["base_stat"] +
+        pokemonData["stats"]["1"]["base_stat"] +
+        pokemonData["stats"]["2"]["base_stat"] +
+        pokemonData["stats"]["3"]["base_stat"] +
+        pokemonData["stats"]["4"]["base_stat"] +
+        pokemonData["stats"]["5"]["base_stat"];
+      console.log("Stats Loaded");
     }
     // MOVES
     if (rightDisplayFunction === "moves") {
@@ -554,82 +814,167 @@ const renderPokemon = async function (pokemon) {
         // Append the table to the container
         movesContainer.appendChild(moveTable);
       });
-       console.log("Moves Loaded");
+      console.log("Moves Loaded");
     }
 
     // ENCOUNTER
-    if(rightDisplayFunction === "encounter"){
+    if (rightDisplayFunction === "encounter") {
+      const pokemonEncounter = await fetchPokemon(`${pokemon}/encounters`);
       const versionTables = {};
       // Enconter Table Render
-      if (pokemonEncounter.length > 0){
-      pokemonEncounter.forEach((encounter) => {
-        encounter.version_details.forEach((versionDetail) => {
-          const versionName = versionDetail.version.name.toLowerCase();
+      if (pokemonEncounter.length > 0) {
+        pokemonEncounter.forEach((encounter) => {
+          encounter.version_details.forEach((versionDetail) => {
+            const versionName = versionDetail.version.name.toLowerCase();
 
-          // Verifica se a versão está na lista games
-          if (games[versionName]) {
-            // Verifica se a versão já foi processada
-            if (!versionTables[versionName]) {
-              // Cria uma nova tabela se a versão ainda não foi processada
-              const encounterTable = document.createElement("table");
-              encounterTable.classList.add("encounter-table");
+            // Verifica se a versão está na lista games
+            if (games[versionName]) {
+              // Verifica se a versão já foi processada
+              if (!versionTables[versionName]) {
+                // Cria uma nova tabela se a versão ainda não foi processada
+                const encounterTable = document.createElement("table");
+                encounterTable.classList.add("encounter-table");
 
-              // Adiciona a tabela ao objeto versionTables
-              versionTables[versionName] = encounterTable;
+                // Adiciona a tabela ao objeto versionTables
+                versionTables[versionName] = encounterTable;
 
-              // Adiciona a versão à tabela
-              const versionRow = encounterTable.insertRow();
-              const versionCell = versionRow.insertCell(0);
-              versionCell.colSpan = 2;
-              versionCell.classList.add("encounter-version");
-              versionCell.innerHTML = versionName.toUpperCase();
-              versionCell.style.textAlign = "center"
+                // Adiciona a versão à tabela
+                const versionRow = encounterTable.insertRow();
+                const versionCell = versionRow.insertCell(0);
+                versionCell.colSpan = 2;
+                versionCell.classList.add("encounter-version");
+                versionCell.innerHTML = versionName.toUpperCase();
+                versionCell.style.textAlign = "center";
 
-              const versionStyle = games[versionName];
+                const versionStyle = games[versionName];
 
-              if (versionStyle) {
-                versionCell.style.backgroundColor = versionStyle.bg;
-                versionCell.style.color = versionStyle.fontColor;
-                versionCell.style.borderColor = versionStyle.border;
+                if (versionStyle) {
+                  versionCell.style.backgroundColor = versionStyle.bg;
+                  versionCell.style.color = versionStyle.fontColor;
+                  versionCell.style.borderColor = versionStyle.border;
+                }
+
+                versionCell.style.borderRadius = "10px";
               }
 
-              versionCell.style.borderRadius = "10px";
+              // Adiciona a location_area à tabela correspondente
+              const encounterTable = versionTables[versionName];
+
+              const locationRow = encounterTable.insertRow();
+              const locationCell = locationRow.insertCell(0);
+              locationCell.colSpan = 2;
+              locationCell.classList.add("encounter-location");
+
+              locationCell.innerHTML = formatText(encounter.location_area.name);
+              locationCell.style.borderTop = "5px solid rgb(83 83 83)";
+              locationCell.style.borderRight = "0px";
+              locationCell.style.borderLeft = "0px";
+
+              // Method Row
+              const methodRow = encounterTable.insertRow();
+              const methodCellLabel = methodRow.insertCell(0);
+              const methodCellData = methodRow.insertCell(1);
+
+              methodCellLabel.innerHTML = "Method";
+              methodCellData.innerHTML = formatText(
+                versionDetail.encounter_details[0].method.name
+              );
             }
-
-            // Adiciona a location_area à tabela correspondente
-            const encounterTable = versionTables[versionName];
-
-            const locationRow = encounterTable.insertRow();
-            const locationCell = locationRow.insertCell(0);
-            locationCell.colSpan = 2;
-            locationCell.classList.add("encounter-location");
-            
-            locationCell.innerHTML = formatText(encounter.location_area.name);
-            locationCell.style.borderTop = "5px solid rgb(83 83 83)";
-            locationCell.style.borderRight = "0px";
-            locationCell.style.borderLeft = "0px";
-
-            // Method Row
-            const methodRow = encounterTable.insertRow();
-            const methodCellLabel = methodRow.insertCell(0);
-            const methodCellData = methodRow.insertCell(1);
-
-            methodCellLabel.innerHTML = "Method";
-            methodCellData.innerHTML =formatText(
-              versionDetail.encounter_details[0].method.name);
-          }
+          });
         });
-      });
-      // Adiciona as tabelas ao container
-      Object.values(versionTables).forEach((table) => {
-        encountersContainer.appendChild(table);
-      });
-    }else{
+        // Adiciona as tabelas ao container
+        Object.values(versionTables).forEach((table) => {
+          encountersContainer.appendChild(table);
+        });
+      } else {
         encountersContainer.innerHTML = "Trade or Evolve";
         encountersContainer.style.textAlign = "center";
-
-    }
+      }
       console.log("Encounters Loaded");
+    }
+    // Info
+    if (rightDisplayFunction === "info") {
+      const infoTable = document.createElement("table");
+      infoTable.classList.add("info-table");
+
+      ////// Info Number Row //////
+      const numberRow = infoTable.insertRow();
+      const numberCellLabel = numberRow.insertCell(0);
+      const numberCellData = numberRow.insertCell(1);
+      // Info Number Row numberCell
+      numberCellLabel.colSpan = 1;
+      numberCellLabel.classList.add("info-numberCell");
+      numberCellLabel.style.borderTopRightRadius = "0px";
+      numberCellLabel.style.borderBottomRightRadius = "0px";
+      numberCellLabel.style.borderTopLeftRadius = "10px";
+      numberCellLabel.style.borderBottomLeftRadius = "10px";
+      numberCellLabel.innerHTML = "ID";
+      // Info Number Row numberData
+      numberCellData.colSpan = 1;
+      numberCellData.classList.add("info-numberData");
+      numberCellData.style.borderTopRightRadius = "10px";
+      numberCellData.style.borderBottomRightRadius = "10px";
+      numberCellData.style.borderTopLeftRadius = "0px";
+      numberCellData.style.borderBottomLeftRadius = "0px";
+      numberCellData.innerHTML = pokemonData.id;
+
+      ////// Info Name Row //////
+      const nameRow = infoTable.insertRow();
+      const nameCellLabel = nameRow.insertCell(0);
+      const nameCellData = nameRow.insertCell(1);
+      // Info Name Row nameCell
+      nameCellLabel.colSpan = 1;
+      nameCellLabel.classList.add("info-numberCell");
+      nameCellLabel.style.borderTopRightRadius = "0px";
+      nameCellLabel.style.borderBottomRightRadius = "0px";
+      nameCellLabel.style.borderTopLeftRadius = "10px";
+      nameCellLabel.style.borderBottomLeftRadius = "10px";
+      nameCellLabel.innerHTML = "Name";
+      // Info Name Row nameData
+      nameCellData.colSpan = 1;
+      nameCellData.classList.add("info-nameData");
+      nameCellData.style.borderTopRightRadius = "10px";
+      nameCellData.style.borderBottomRightRadius = "10px";
+      nameCellData.style.borderTopLeftRadius = "0px";
+      nameCellData.style.borderBottomLeftRadius = "0px";
+      nameCellData.innerHTML = pokemonData.name;
+
+      // Cria e estiliza a célula de tipo
+      const pokemonTypes = pokemonData.types.map((type) => type.type.name);
+      createTypeCell(infoTable, pokemonTypes);
+
+      // Resists
+      const resistRowTitle = infoTable.insertRow();
+      const resistTitleLabel = resistRowTitle.insertCell(0);
+      resistTitleLabel.colSpan = 2;
+      resistTitleLabel.innerHTML = "Type effectiveness";
+
+      const resistRow = infoTable.insertRow();
+      const resistCellLabel = resistRow.insertCell(0);
+      const resistCellData = resistRow.insertCell(1);
+      resistCellLabel.innerHTML = "Damaged normally by:";
+      resistCellData.innerHTML = pokemonData.types
+        .map((type) => type.type.name)
+        .join("/");
+
+      resistCellData.style.borderTopRightRadius = "10px";
+      resistCellLabel.style.borderTopLeftRadius = "10px";
+
+      // Adiciona as informações adicionais
+      /* TODO:"
+      ESSAS FUNCAO DE DISPLAYDAMAGE ESTAO BUGADAS TEM QUE TAR VENDO ISSO POREM AS DE TYPES ESTAO BOAS
+      " */
+
+    
+      displayNormalDamage(infoTable, pokemonTypes);
+      displayResistances(infoTable, pokemonTypes);
+      displayImmunities(infoTable, pokemonTypes);
+      displayWeaknesses(infoTable, pokemonTypes);
+
+      // Append the table to the container
+      infoContainer.appendChild(infoTable);
+
+      console.log("Info Loaded");
     }
   } else {
     pokemonImage.style.display = "none";
@@ -637,7 +982,6 @@ const renderPokemon = async function (pokemon) {
     pokemonName.innerHTML = "Not Found :(";
     pokemonNumber.innerHTML = "";
   }
-
 };
 
 // Render the searched pokemon
@@ -689,8 +1033,8 @@ const rightDisplayFunctionStatus = function () {
 };
 buttonStats.addEventListener("click", rightDisplayFunctionStatus);
 
-// Change right display function to status
-const rightDisplayFunctionAbility = function () {
+// Change right display function to info
+const rightDisplayFunctionInfo = function () {
   playAudio("./assets/sounds/buttonClickSound.mp3");
   buttonStats.classList.remove("buttonRightActive");
   buttonMoves.classList.remove("buttonRightActive");
@@ -705,9 +1049,9 @@ const rightDisplayFunctionAbility = function () {
   rightDisplay3.style.display = "none";
   rightDisplay4.style.display = "flex";
   renderPokemon(serchedPokemon);
-  rightDisplayFunction = "ability"
+  rightDisplayFunction = "info";
 };
-buttonAbility.addEventListener("click", rightDisplayFunctionAbility);
+buttonAbility.addEventListener("click", rightDisplayFunctionInfo);
 
 // Change right display function to moves
 const rightDisplayFunctionMoves = function () {

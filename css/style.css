@@ -478,6 +478,85 @@ main {
   margin-bottom: 5px;
 }
 
+/* INFO TABLE */
+
+.info-table {
+  width: 100%;
+  /*border-collapse: collapse;*/
+  margin-bottom: 20px;
+  background-color: #999999;
+  border-radius: 10px;
+  border: 2px solid #999999;
+  font-size: 15px;
+}
+
+.info-name {
+  text-align: center !important;
+}
+
+.info-table th,
+.info-table td {
+  border: 1px solid #ffffff;
+  padding: 3px;
+  text-align: left;
+}
+
+.info-table th {
+  background-color: #A8A878;
+  color: #FFF;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.info-table td {
+  background-color: #ffffff;
+  color: #0645ad;
+
+  /*border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;*/
+}
+
+.info-table th a,
+.info-table td a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.info-table th a:hover,
+.info-table td a:hover {
+  text-decoration: underline;
+}
+
+.info-table th b {
+  font-weight: bold;
+}
+
+.info-table tr:nth-child(odd) {
+  background-color: #8C888C;
+}
+
+.info-table tr:nth-child(even) {
+  background-color: #FFF;
+}
+
+.info-table td span.explain {
+  font-size: 0.9em;
+}
+
+.info-table td small {
+  font-size: 0.8em;
+}
+
+.info-table td ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.info-table td ul li {
+  margin-bottom: 5px;
+}
+
 /* Media query para telas menores que 600px */
 @media only screen and (max-width: 600px) {
 body {
