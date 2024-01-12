@@ -495,6 +495,16 @@ const fetchMove = async function (pokemon) {
   }
 };
 
+// Search a type in API
+const fetchType = async function (type) {
+  const APIResponse = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
+
+  if (APIResponse.status == 200) {
+    const typeData = await APIResponse.json();
+    return typeData.damage_relations;
+  }
+};
+
 // Função para criar e estilizar a célula de tipo
 function createTypeCell(infoTable, pokemonTypes) {
   const typeRow = infoTable.insertRow();
@@ -529,76 +539,54 @@ function createTypeCell(infoTable, pokemonTypes) {
   typeRow.style.borderRadius = "10px";
 }
 
-// Função para calcular e exibir os tipos que causam dano normal
-function displayNormalDamage(infoTable, pokemonTypes) {
-  const normalDamageRow = infoTable.insertRow();
-  const normalDamageCellLabel = normalDamageRow.insertCell(0);
-  const normalDamageCellData = normalDamageRow.insertCell(1);
-  normalDamageCellLabel.innerHTML = "Damaged normally by:";
+// Função para criar e estilizar uma célula de tipos para relações de dano
+function createDamageRelationCell(infoTable, title, damageRelationTypes) {
+  const row = infoTable.insertRow();
 
-  let normalDamageString = "";
-  for (const type of pokemonTypes) {
-    normalDamageString += type + " ";
-  }
+  const labelCell = row.insertCell(0);
+  labelCell.style.width = "30%"; // Ajustar a largura conforme necessário
+  labelCell.innerHTML = title;
 
-  normalDamageCellData.innerHTML = normalDamageString.trim();
-}
+  const dataCell = row.insertCell(1);
+  dataCell.style.width = "70%"; // Ajustar a largura conforme necessário
 
-// Função para calcular e exibir os tipos resistentes
-function displayResistances(infoTable, pokemonTypes) {
-  const resistancesRow = infoTable.insertRow();
-  const resistancesCellLabel = resistancesRow.insertCell(0);
-  const resistancesCellData = resistancesRow.insertCell(1);
-  resistancesCellLabel.innerHTML = "Resistant to:";
+  // Cria uma div para cada tipo e a adiciona à célula
+  for (const type of damageRelationTypes) {
+    const typeName = type.name;
 
-  let resistancesString = "";
-  for (const type of pokemonTypes) {
-    const typeResistances = types[type].resist;
-    for (const resistanceType in typeResistances) {
-      if (typeResistances[resistanceType] === 2) {
-        resistancesString += resistanceType + " ";
+    if (typeName) {
+      const typeBadge = document.createElement("div");
+      let multiplierText;
+
+      // Tratamento especial para "Resistant To"
+      if (title === "Resistant To:") {
+        multiplierText = type.multiplier === 2 ? "½x" : "¼x";
+      } else {
+        multiplierText = type.multiplier === 2 ? "2x" : type.multiplier === 4 ? "4x" : `${type.multiplier}x`;
+      }
+
+      typeBadge.innerHTML = typeName + ` (${multiplierText})`; // Adiciona o multiplicador
+
+      // Lógica para obter o estilo do tipo
+      const typeStyle = types[typeName]; // Certifique-se de que "types" está definido
+      if (typeStyle) {
+        typeBadge.style.background = typeStyle.bg;
+        typeBadge.style.color = "#FFF";
+        typeBadge.style.padding = "3px 6px"; // Ajuste o espaçamento aqui
+        typeBadge.style.marginRight = "5px"; // Adiciona um pequeno espaço entre as plaquinhas
+        typeBadge.style.borderRadius = "10px";
+        typeBadge.style.display = "inline-block";
+
+        dataCell.appendChild(typeBadge);
       }
     }
   }
 
-  resistancesCellData.innerHTML = resistancesString.trim();
+  // Adiciona um estilo adicional para o background da célula
+  row.style.background = types[damageRelationTypes[0]?.name]?.bg; // Use a cor do primeiro tipo para o background
+  row.style.borderRadius = "10px";
 }
 
-// Função para calcular e exibir os tipos imunes
-function displayImmunities(infoTable, pokemonTypes) {
-  const immunitiesRow = infoTable.insertRow();
-  const immunitiesCellLabel = immunitiesRow.insertCell(0);
-  const immunitiesCellData = immunitiesRow.insertCell(1);
-  immunitiesCellLabel.innerHTML = "Immune to:";
-
-  let immunitiesString = "";
-  for (const type of pokemonTypes) {
-    const typeImmunities = types[type].immune;
-    immunitiesString += Object.keys(typeImmunities).join(" ");
-  }
-
-  immunitiesCellData.innerHTML = immunitiesString.trim();
-}
-
-// Função para calcular e exibir os tipos fracos
-function displayWeaknesses(infoTable, pokemonTypes) {
-  const weaknessesRow = infoTable.insertRow();
-  const weaknessesCellLabel = weaknessesRow.insertCell(0);
-  const weaknessesCellData = weaknessesRow.insertCell(1);
-  weaknessesCellLabel.innerHTML = "Weak to:";
-
-  let weaknessesString = "";
-  for (const type of pokemonTypes) {
-    const typeWeaknesses = types[type].weakness;
-    for (const weaknessType in typeWeaknesses) {
-      if (typeWeaknesses[weaknessType] === 2) {
-        weaknessesString += weaknessType + " ";
-      }
-    }
-  }
-
-  weaknessesCellData.innerHTML = weaknessesString.trim();
-}
 // Apply the search changed on screen
 const renderPokemon = async function (pokemon) {
   pokemonName.innerHTML = "Loading...";
@@ -949,31 +937,116 @@ const renderPokemon = async function (pokemon) {
       resistTitleLabel.colSpan = 2;
       resistTitleLabel.innerHTML = "Type effectiveness";
 
-      const resistRow = infoTable.insertRow();
-      const resistCellLabel = resistRow.insertCell(0);
-      const resistCellData = resistRow.insertCell(1);
-      resistCellLabel.innerHTML = "Damaged normally by:";
-      resistCellData.innerHTML = pokemonData.types
-        .map((type) => type.type.name)
-        .join("/");
+      // Resists Map
+      const damageRelationsPromises = pokemonData.types.map(async (type) => {
+        const damageRelations = await fetchType(type.type.name);
+        return damageRelations;
+      });
 
-      resistCellData.style.borderTopRightRadius = "10px";
-      resistCellLabel.style.borderTopLeftRadius = "10px";
+      // Aguarda todas as chamadas assíncronas serem concluídas
+      const damageRelationsResults = await Promise.all(damageRelationsPromises);
 
-      // Adiciona as informações adicionais
-      /* TODO:"
-      ESSAS FUNCAO DE DISPLAYDAMAGE ESTAO BUGADAS TEM QUE TAR VENDO ISSO POREM AS DE TYPES ESTAO BOAS
-      " */
+      console.log(damageRelationsResults);
 
-    
-      displayNormalDamage(infoTable, pokemonTypes);
-      displayResistances(infoTable, pokemonTypes);
-      displayImmunities(infoTable, pokemonTypes);
-      displayWeaknesses(infoTable, pokemonTypes);
+      const extractTypesByDamageMultiplier = (
+        damageRelationsResults,
+        damageMultiplier
+      ) => {
+        const types = new Map();
+
+        damageRelationsResults.forEach((relation) => {
+          if (relation[damageMultiplier]) {
+            relation[damageMultiplier].forEach((type) => {
+              if (!types.has(type.name)) {
+                types.set(type.name, { name: type.name, multiplier: 2 });
+              } else {
+                // Se o tipo já existir, soma os multiplicadores
+                types.get(type.name).multiplier += 2;
+              }
+            });
+          }
+        });
+
+        // Remover tipos que estão ao mesmo tempo em "double damage from" e "half damage from"
+        if (
+          damageMultiplier === "half_damage_from" ||
+          damageMultiplier === "double_damage_from"
+        ) {
+          const oppositeMultiplier =
+            damageMultiplier === "half_damage_from"
+              ? "double_damage_from"
+              : "half_damage_from";
+          types.forEach((type, typeName) => {
+            if (
+              damageRelationsResults.some((relation) =>
+                relation[oppositeMultiplier]?.some((t) => t.name === typeName)
+              )
+            ) {
+              types.delete(typeName);
+            }
+          });
+        }
+
+        // Remover tipos que estão em "no damage from" de "half damage from" e "double damage from"
+        if (
+          damageMultiplier === "half_damage_from" ||
+          damageMultiplier === "double_damage_from"
+        ) {
+          const immuneTypeNames = damageRelationsResults.reduce(
+            (acc, relation) => {
+              const noDamageTypes = relation.no_damage_from || [];
+              return acc.concat(noDamageTypes.map((type) => type.name));
+            },
+            []
+          );
+
+          immuneTypeNames.forEach((typeName) => {
+            types.delete(typeName);
+          });
+        }
+
+        return [...types.values()];
+      };
+
+      const doubleDamageFrom = extractTypesByDamageMultiplier(
+        damageRelationsResults,
+        "double_damage_from"
+      );
+      console.log("double damage from", doubleDamageFrom);
+
+      const immuneTo = extractTypesByDamageMultiplier(
+        damageRelationsResults,
+        "no_damage_from"
+      );
+      console.log("no damage from", immuneTo);
+
+      const halfDamageFrom = extractTypesByDamageMultiplier(
+        damageRelationsResults,
+        "half_damage_from"
+      );
+      console.log("half damage from", halfDamageFrom)
+      
+      createDamageRelationCell(
+        infoTable,
+        "Weak To:",
+        doubleDamageFrom,
+        damageRelationsResults
+      );
+      createDamageRelationCell(
+        infoTable,
+        "Immune To:",
+        immuneTo,
+        damageRelationsResults
+      );
+      createDamageRelationCell(
+        infoTable,
+        "Resistant To:",
+        halfDamageFrom,
+        damageRelationsResults
+      );
 
       // Append the table to the container
       infoContainer.appendChild(infoTable);
-
       console.log("Info Loaded");
     }
   } else {
