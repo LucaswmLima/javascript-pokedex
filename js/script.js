@@ -439,19 +439,21 @@ const games = {
 // Initialize pokedex with the correct menus
 
 let serchedPokemon = 1;
-let rightDisplayFunction = "status";
+let rightDisplayFunction = "info";
 
 const initializePokedex = function () {
-  buttonStats.classList.add("buttonRightActive");
+  buttonStats.classList.remove("buttonRightActive");
   buttonMoves.classList.remove("buttonRightActive");
   buttonEncounter.classList.remove("buttonRightActive");
-  buttonStats.setAttribute("disabled", "");
+  buttonAbility.classList.add("buttonRightActive");
+  buttonStats.removeAttribute("disabled", "");
   buttonMoves.removeAttribute("disabled", "");
   buttonEncounter.removeAttribute("disabled", "");
-  rightDisplay1.style.display = "flex";
+  buttonAbility.setAttribute("disabled", "");
+  rightDisplay1.style.display = "none";
   rightDisplay2.style.display = "none";
   rightDisplay3.style.display = "none";
-  rightDisplay4.style.display = "none";
+  rightDisplay4.style.display = "flex";
 };
 
 initializePokedex();
