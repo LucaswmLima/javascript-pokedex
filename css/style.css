@@ -78,17 +78,45 @@ main {
 }
 
 .rightDisplayMoves::-webkit-scrollbar {
-  width: 20px;
+  width: 12px;
 }
 
 .rightDisplayMoves::-webkit-scrollbar-track {
   background-color: #f5f5f5;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
 .rightDisplayMoves::-webkit-scrollbar-thumb {
   background-color: #3b3b3b;
-  border-radius: 20px;
+  border-radius: 12px;
+}
+
+.rightDisplayAbility::-webkit-scrollbar {
+  width: 12px;
+}
+
+.rightDisplayAbility::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.rightDisplayAbility::-webkit-scrollbar-thumb {
+  background-color: #3b3b3b;
+  border-radius: 12px;
+}
+
+.rightDisplayEncounter::-webkit-scrollbar {
+  width: 12px;
+}
+
+.rightDisplayEncounter::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.rightDisplayEncounter::-webkit-scrollbar-thumb {
+  background-color: #3b3b3b;
+  border-radius: 12px;
 }
 
 .rightDisplayMoves .pokemonData{
