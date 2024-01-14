@@ -132,8 +132,9 @@ Downloading and installing Node.js and npm
 - [x] Responsiveness implementation
 - [x] Pokémon stats section
 - [x] Pokémon moves section
-- [ ] Pokémon abilities section
-- [ ] Pokémon encounter section
+- [x] Pokémon info section
+- [x] Pokémon encounter section
+- [ ] Pokémon abilities in info section
 
 See the [open issues](https://github.com/lucaswmlima/javascript-pokedex/issues) for a full list of proposed features (and known issues).
 
