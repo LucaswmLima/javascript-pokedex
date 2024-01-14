@@ -723,6 +723,14 @@ const renderPokemon = async function (pokemon) {
         const moveTable = document.createElement("table");
         moveTable.classList.add("move-table");
 
+        // get the type style
+        const typeColor = types[move.moveType];
+        // apply the style to the info table
+        if (moveTable) {
+          moveTable.style.backgroundColor = typeColor.bg;
+          moveTable.style.border = `2px solid ${typeColor.border}`;
+        }
+
         // Move Name Row
         const nameRow = moveTable.insertRow();
         const nameCell = nameRow.insertCell(0);
@@ -747,11 +755,11 @@ const renderPokemon = async function (pokemon) {
         const typeStyle = types[move.moveType];
         if (typeStyle) {
           typeCellData.style.backgroundColor = typeStyle.bg;
-          typeCellData.style.borderColor = "#fff";
           typeCellData.style.color = "#FFF";
+          typeCellData.style.border = "2px solid #fff";
           typeCellLabel.style.backgroundColor = typeStyle.bg;
           typeCellLabel.style.color = "#FFF";
-          typeCellLabel.style.borderColor = "#fff";
+          typeCellLabel.style.border = "2px solid #fff";
         }
 
         typeCellData.style.borderTopRightRadius = "10px";
@@ -774,10 +782,10 @@ const renderPokemon = async function (pokemon) {
         if (categoryStyle) {
           categoryCellData.style.backgroundColor = categoryStyle.bg;
           categoryCellData.style.color = categoryStyle.fontColor;
-          categoryCellData.style.borderColor = "#fff";
+          categoryCellData.style.border = "2px solid #fff";
           categoryCellLabel.style.backgroundColor = categoryStyle.bg;
           categoryCellLabel.style.color = "#FFF";
-          categoryCellLabel.style.borderColor = "#fff";
+          categoryCellLabel.style.border = "2px solid #fff";
         }
 
         categoryCellData.style.borderTopRightRadius = "10px";
