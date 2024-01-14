@@ -667,7 +667,6 @@ const renderPokemon = async function (pokemon) {
         pokemonData["stats"]["3"]["base_stat"] +
         pokemonData["stats"]["4"]["base_stat"] +
         pokemonData["stats"]["5"]["base_stat"];
-      console.log("Stats Loaded");
     }
     // MOVES
     if (rightDisplayFunction === "moves") {
@@ -829,7 +828,6 @@ const renderPokemon = async function (pokemon) {
         // Append the table to the container
         movesContainer.appendChild(moveTable);
       });
-      console.log("Moves Loaded");
     }
     // ENCOUNTER
     if (rightDisplayFunction === "encounter") {
@@ -901,7 +899,6 @@ const renderPokemon = async function (pokemon) {
         encountersContainer.innerHTML = "Trade or Evolve";
         encountersContainer.style.textAlign = "center";
       }
-      console.log("Encounters Loaded");
     }
     // INFO
     if (rightDisplayFunction === "info") {
@@ -950,7 +947,6 @@ const renderPokemon = async function (pokemon) {
       nameCellData.style.borderBottomLeftRadius = "0px";
       nameCellData.innerHTML =
         pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1);
-
 
       // Create and style the type cell
       const pokemonTypes = pokemonData.types.map((type) => type.type.name);
@@ -1099,11 +1095,10 @@ const renderPokemon = async function (pokemon) {
       const pokemonHiddenAbility = pokemonData.abilities.map(
         (abilityObject) => abilityObject
       );
-      console.log(pokemonHiddenAbility);
 
-      // Função para buscar os detalhes de todas as habilidades
+      // Function to fetch details of all skills
       const fetchAllAbilities = async function () {
-        // Mapeia sobre o array de detalhes das habilidades e busca os detalhes de cada uma
+        // Maps over the skill details array and fetches the details of each one
         const abilitiesDetails = await Promise.all(
           pokemonAbilities.map(async (ability) => {
             const abilityData = await fetchAbility(ability.name);
@@ -1114,11 +1109,9 @@ const renderPokemon = async function (pokemon) {
         return abilitiesDetails;
       };
 
-      // Chama a função para buscar os detalhes de todas as habilidades
+      // Call the function to fetch details of all skills
       fetchAllAbilities().then((abilitiesDetails) => {
-        console.log(abilitiesDetails); // Agora, você pode acessar abilitiesDetails aqui dentro do bloco then
 
-        // Chama addAbilityRowsToTable dentro do bloco then, onde abilitiesDetails está definido
         addAbilityRowsToTable(
           infoTable,
           abilitiesDetails,
@@ -1128,7 +1121,6 @@ const renderPokemon = async function (pokemon) {
 
       // Append the table to the container
       infoContainer.appendChild(infoTable);
-      console.log("Info Loaded");
     }
   } else {
     pokemonImage.style.display = "none";
