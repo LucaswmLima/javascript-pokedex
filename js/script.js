@@ -32,194 +32,128 @@ const movesContainer = document.getElementById("movesContainer");
 const encountersContainer = document.getElementById("encounterContainer");
 const infoContainer = document.getElementById("infoContainer");
 
+// Pokemons types style
 const types = {
   normal: {
     name: "Normal",
     bg: "#A8A878",
-    border: "#6D6D4E",
-    resist: {},
-    immune: {},
-    weakness: { fighting: 2 },
+    border: "#6D6D4E"
   },
   fire: {
     name: "Fire",
     bg: "#F08030",
-    border: "#9C531F",
-    resist: { fire: 0.5, ice: 0.5, bug: 2, grass: 2, steel: 2, fairy: 2 },
-    immune: {},
-    weakness: { water: 2, rock: 2, ground: 2 },
+    border: "#9C531F"
   },
   fighting: {
     name: "Fighting",
     bg: "#C03028",
-    border: "#7D1F1A",
-    resist: { bug: 0.5, dark: 0.5, rock: 0.5 },
-    immune: { ghost: 0 },
-    weakness: { flying: 2, psychic: 2, fairy: 2 },
+    border: "#7D1F1A"
   },
   water: {
     name: "Water",
     bg: "#6890F0",
-    border: "#445E9C",
-    resist: { fire: 0.5, ice: 0.5, steel: 0.5, electric: 0.5 },
-    immune: {},
-    weakness: { grass: 2, electric: 2, rock: 2, ground: 2 },
+    border: "#445E9C"
   },
   flying: {
     name: "Flying",
     bg: "#A890F0",
-    border: "#6D5E9C",
-    resist: { fighting: 0.5, bug: 0.5, grass: 0.5 },
-    immune: { ground: 0 },
-    weakness: { rock: 2, electric: 2, ice: 2 },
+    border: "#6D5E9C"
   },
   grass: {
     name: "Grass",
     bg: "#78C850",
-    border: "#4E8234",
-    resist: { water: 0.5, electric: 0.5, ground: 0.5 },
-    immune: {},
-    weakness: { fire: 2, ice: 2, poison: 2, flying: 2 },
+    border: "#4E8234"
   },
   poison: {
     name: "Poison",
     bg: "#A040A0",
-    border: "#682A68",
-    resist: { fighting: 0.5, poison: 0.5, bug: 0.5, fairy: 0.5, grass: 2 },
-    immune: {},
-    weakness: { ground: 2, psychic: 2 },
+    border: "#682A68"
   },
   electric: {
     name: "Electric",
     bg: "#F8D030",
-    border: "#A1871F",
-    resist: { electric: 0.5, ground: 2 },
-    immune: {},
-    weakness: { ground: 0.5 },
+    border: "#A1871F"
   },
   ground: {
     name: "Ground",
     bg: "#E0C068",
-    border: "#927D44",
-    resist: { poison: 0.5, rock: 0.5, electric: 0.5 },
-    immune: { electric: 0 },
-    weakness: { ice: 2, grass: 2, water: 2 },
+    border: "#927D44"
   },
   psychic: {
     name: "Psychic",
     bg: "#F85888",
-    border: "#A13959",
-    resist: { fighting: 2, psychic: 0.5, dark: 0.5 },
-    immune: {},
-    weakness: { bug: 2, ghost: 2 },
+    border: "#A13959"
   },
   rock: {
     name: "Rock",
     bg: "#B8A038",
-    border: "#786824",
-    resist: { normal: 0.5, fire: 0.5, poison: 0.5, flying: 0.5 },
-    immune: {},
-    weakness: { fighting: 2, grass: 2, ground: 2, steel: 2, water: 2 },
+    border: "#786824"
   },
   ice: {
     name: "Ice",
     bg: "#98D8D8",
-    border: "#638D8D",
-    resist: { ice: 0.5 },
-    immune: {},
-    weakness: { fighting: 2, fire: 2, rock: 2, steel: 2 },
+    border: "#638D8D"
   },
   bug: {
     name: "Bug",
     bg: "#A8B820",
-    border: "#6D7815",
-    resist: { fighting: 0.5, ground: 0.5, grass: 0.5 },
-    immune: {},
-    weakness: { fire: 2, flying: 2, rock: 2 },
+    border: "#6D7815"
   },
   dragon: {
     name: "Dragon",
     bg: "#7038F8",
-    border: "#4924A1",
-    resist: { electric: 0.5, fire: 0.5, grass: 0.5, water: 0.5 },
-    immune: {},
-    weakness: { dragon: 2, fairy: 2, ice: 2 },
+    border: "#4924A1"
   },
   ghost: {
     name: "Ghost",
     bg: "#705898",
-    border: "#493963",
-    resist: { bug: 0.5, poison: 0.5 },
-    immune: { normal: 0, fighting: 0 },
-    weakness: { dark: 2, ghost: 2 },
+    border: "#493963"
   },
   dark: {
     name: "Dark",
     bg: "#705848",
-    border: "#49392F",
-    resist: { dark: 0.5, ghost: 0.5 },
-    immune: { psychic: 0 },
-    weakness: { bug: 2, fairy: 2, fighting: 2 },
+    border: "#49392F"
   },
   steel: {
     name: "Steel",
     bg: "#B8B8D0",
-    border: "#787887",
-    resist: {
-      bug: 0.5,
-      dragon: 0.5,
-      fairy: 0.5,
-      flying: 0.5,
-      grass: 0.5,
-      ice: 0.5,
-      normal: 0.5,
-      psychic: 0.5,
-      rock: 0.5,
-      steel: 0.5,
-    },
-    immune: { poison: 0 },
-    weakness: { fighting: 2, fire: 2, ground: 2 },
+    border: "#787887"
   },
   fairy: {
     name: "Fairy",
     bg: "#EE99AC",
-    border: "#9B6470",
-    resist: { bug: 0.5, dark: 0.5, fighting: 0.5 },
-    immune: { dragon: 0 },
-    weakness: { poison: 2, steel: 2 },
+    border: "#9B6470"
   },
   stellar: {
     name: "Stellar",
     bg: "#7CC7B2",
-    border: "#518174",
-    resist: { resist: {}, immune: {}, weakness: {} },
+    border: "#518174"
   },
   "???": {
     name: "???",
     bg: "#7CC7B2",
-    border: "#518174",
-    resist: { resist: {}, immune: {}, weakness: {} },
+    border: "#518174"
   },
   undefined: {
     name: "???",
     bg: "#7CC7B2",
-    border: "#518174",
-    resist: { resist: {}, immune: {}, weakness: {} },
+    border: "#518174"
   },
   null: {
     name: "???",
     bg: "#7CC7B2",
-    border: "#518174",
-    resist: { resist: {}, immune: {}, weakness: {} },
+    border: "#518174"
   },
 };
 
+// Moves categories style
 const categories = {
   physical: { name: "Physical", bg: "#C92112", fontColor: "#F67A1A" },
   special: { name: "Special", bg: "#4F5870", fontColor: "#fff" },
   status: { name: "Status", bg: "#8C888C", fontColor: "#fff" },
 };
 
+// Games style
 const games = {
   red: { name: "Red", bg: "#FF1111", border: "#FF1111", fontColor: "#000" },
   blue: { name: "Blue", bg: "#1111FF", border: "#1111FF", fontColor: "#fff" },
@@ -437,10 +371,8 @@ const games = {
 };
 
 // Initialize pokedex with the correct menus
-
 let serchedPokemon = 1;
 let rightDisplayFunction = "info";
-
 const initializePokedex = function () {
   buttonStats.classList.remove("buttonRightActive");
   buttonMoves.classList.remove("buttonRightActive");
@@ -455,17 +387,16 @@ const initializePokedex = function () {
   rightDisplay3.style.display = "none";
   rightDisplay4.style.display = "flex";
 };
-
 initializePokedex();
 
 // Audio play function
-function playAudio(url) {
+const playAudio = (url) => {
   new Audio(url).play();
   Audio.volume = 0.2;
 }
 
-// Format text function
-function formatText(text) {
+// Format text function and change " - " for space
+const formatText = (text) => {
   const words = text.split("-");
   const formattedWords = words.map(
     (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
@@ -475,7 +406,7 @@ function formatText(text) {
   return formattedText;
 }
 
-// Search a pokemon in API
+// Search a pokemon in API and return the pokemon data
 const fetchPokemon = async function (pokemon) {
   const APIResponse = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${pokemon}`
@@ -487,7 +418,7 @@ const fetchPokemon = async function (pokemon) {
   }
 };
 
-// Search a move in API
+// Search a move in API and return the move data
 const fetchMove = async function (pokemon) {
   const APIResponse = await fetch(`https://pokeapi.co/api/v2/move/${pokemon}`);
 
@@ -497,7 +428,7 @@ const fetchMove = async function (pokemon) {
   }
 };
 
-// Search a type in API
+// Search a type in API ans return dmg relations
 const fetchType = async function (type) {
   const APIResponse = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
 
@@ -507,8 +438,18 @@ const fetchType = async function (type) {
   }
 };
 
-// Função para criar e estilizar a célula de tipo
-function createTypeCell(infoTable, pokemonTypes) {
+  // Search a ability in API ans return the ability data
+  const fetchAbility = async function (ability) {
+    const APIResponse = await fetch(`https://pokeapi.co/api/v2/ability/${ability}`);
+
+    if (APIResponse.status == 200) {
+      const abilityData = await APIResponse.json();
+      return abilityData;
+    }
+  };
+
+// Create and style the type cell
+const createTypeCell = (infoTable, pokemonTypes) => {
   const typeRow = infoTable.insertRow();
 
   const typeCellLabel = typeRow.insertCell(0);
@@ -521,7 +462,6 @@ function createTypeCell(infoTable, pokemonTypes) {
   typeCellLabel.style.borderBottomLeftRadius = "10px";
   typeCellData.style.borderTopRightRadius = "10px";
   typeCellLabel.style.borderTopLeftRadius = "10px";
-
 
   // Cria uma div para cada tipo e a adiciona à célula
   for (const type of pokemonTypes) {
@@ -545,10 +485,10 @@ function createTypeCell(infoTable, pokemonTypes) {
   // Adiciona um estilo adicional para o background da célula
   typeRow.style.background = types[pokemonTypes[0]].bg; // Use a cor do primeiro tipo para o background
   typeRow.style.borderRadius = "10px";
-}
+};
 
-// Função para criar e estilizar uma célula de tipos para relações de dano
-function createDamageRelationCell(infoTable, title, damageRelationTypes) {
+// Create and style a type cell for damage relationships
+const createDamageRelationCell = (infoTable, title, damageRelationTypes) => {
   const row = infoTable.insertRow();
 
   const labelCell = row.insertCell(0);
@@ -583,7 +523,9 @@ function createDamageRelationCell(infoTable, title, damageRelationTypes) {
         multiplierText = type.multiplier === 2 ? "2x" : type.multiplier === 4 ? "4x" : `${type.multiplier}x`;
       }
 
-      typeBadge.innerHTML = typeName + ` (${multiplierText})`; // Adiciona o multiplicador
+      const typeNameCapitalized =
+        type.name.charAt(0).toUpperCase() + type.name.slice(1);
+      typeBadge.innerHTML = typeNameCapitalized + ` (${multiplierText})`;
 
       // Lógica para obter o estilo do tipo
       const typeStyle = types[typeName]; // Certifique-se de que "types" está definido
@@ -606,8 +548,65 @@ function createDamageRelationCell(infoTable, title, damageRelationTypes) {
   row.style.borderRadius = "10px";
 }
 
-// Apply the search changed on screen
-const renderPokemon = async function (pokemon) {
+const addAbilityRowsToTable = (
+  infoTable,
+  abilitiesDetails,
+  hiddenAbilities
+) => {
+  // Verifica se o elemento com o ID "info-table" existe
+  if (infoTable) {
+    abilitiesDetails.forEach((ability) => {
+      const abilityRow = infoTable.insertRow();
+
+      // Adiciona célula com o nome da habilidade
+      const abilityNameCell = abilityRow.insertCell(0);
+      abilityNameCell.style.borderTopRightRadius = "0px";
+      abilityNameCell.style.borderBottomRightRadius = "0px";
+      abilityNameCell.style.borderTopLeftRadius = "10px";
+      abilityNameCell.style.borderBottomLeftRadius = "10px";
+
+      // Verifica se a habilidade está na lista de hiddenAbilities
+      const hiddenAbility = hiddenAbilities.find(
+        (hidden) => hidden.ability.name === ability.name && hidden.is_hidden
+      );
+
+      if (hiddenAbility) {
+        // Se a habilidade estiver marcada como "hidden", adiciona "(hidden)" ao nome
+        abilityNameCell.innerHTML = `${
+          ability.name.charAt(0).toUpperCase() + ability.name.slice(1)
+        } (hidden)`;
+      } else {
+        // Se não, usa o nome normal
+        abilityNameCell.innerHTML =
+          ability.name.charAt(0).toUpperCase() + ability.name.slice(1);
+      }
+
+      // Adiciona célula com o short effect da habilidade
+      const abilityShortEffectCell = abilityRow.insertCell(1);
+      abilityShortEffectCell.style.borderTopRightRadius = "10px";
+      abilityShortEffectCell.style.borderBottomRightRadius = "10px";
+      abilityShortEffectCell.style.borderTopLeftRadius = "0px";
+      abilityShortEffectCell.style.borderBottomLeftRadius = "0px";
+
+      // Verifica se há uma entrada em inglês (language 'en')
+      const englishEntry = ability.effect_entries.find(
+        (entry) => entry.language.name === "en"
+      );
+
+      // Usa a entrada em inglês se disponível, caso contrário, usa "N/A"
+      abilityShortEffectCell.innerHTML = englishEntry?.short_effect || "N/A";
+
+      // Estiliza a célula de acordo com suas preferências
+      abilityRow.style.background = "#e0e0e0"; // Adapte a cor conforme necessário
+      abilityRow.style.borderRadius = "10px"; // Adapte o raio conforme necessário
+    });
+  } else {
+    console.error("Element with ID 'info-table' not found.");
+  }
+};
+
+// Reset Screen Data
+const resetScreenData = () => {
   pokemonName.innerHTML = "Loading...";
   encountersContainer.innerHTML = "Loading...";
   movesContainer.innerHTML = "Loading...";
@@ -617,13 +616,22 @@ const renderPokemon = async function (pokemon) {
   movesContainer.innerHTML = "";
   infoContainer.innerHTML = "";
 
+}
+
+// Apply the search changed on screen
+const renderPokemon = async function (pokemon) {
+  // Reset Screen Data every search
+  resetScreenData();
+  // fetch the desired pokemon
   const pokemonData = await fetchPokemon(pokemon);
 
+  // Primary render function
   if (pokemonData) {
+
+    // IMAGE
     pokemonImage.style.display = "block";
     pokemonStatsContainer.style.display = "block";
     pokemonName.innerHTML = pokemonData.name;
-
     pokemonNumber.innerHTML = pokemonData.id + "&nbsp-";
     pokemonImage.src =
       pokemonData["sprites"]["versions"]["generation-v"]["black-white"][
@@ -632,7 +640,7 @@ const renderPokemon = async function (pokemon) {
     input.value = "";
     serchedPokemon = pokemonData.id;
 
-    //StatsBar
+    // STATS
     if (rightDisplayFunction === "status") {
       hpBar.style["width"] =
         Math.round((pokemonData["stats"]["0"]["base_stat"] * 100) / 255) + "%";
@@ -823,7 +831,6 @@ const renderPokemon = async function (pokemon) {
       });
       console.log("Moves Loaded");
     }
-
     // ENCOUNTER
     if (rightDisplayFunction === "encounter") {
       const pokemonEncounter = await fetchPokemon(`${pokemon}/encounters`);
@@ -834,44 +841,41 @@ const renderPokemon = async function (pokemon) {
           encounter.version_details.forEach((versionDetail) => {
             const versionName = versionDetail.version.name.toLowerCase();
 
-            // Verifica se a versão está na lista games
+            // Check if the version is in the games list
             if (games[versionName]) {
-              // Verifica se a versão já foi processada
+              // Checks if the version has already been processed
               if (!versionTables[versionName]) {
-                // Cria uma nova tabela se a versão ainda não foi processada
+                // Create a new table if the version has not yet been processed
                 const encounterTable = document.createElement("table");
+
                 encounterTable.classList.add("encounter-table");
-
-                // Adiciona a tabela ao objeto versionTables
+                // Add the table to the versionTables object
                 versionTables[versionName] = encounterTable;
-
-                // Adiciona a versão à tabela
+                // Add the version to the table
                 const versionRow = encounterTable.insertRow();
                 const versionCell = versionRow.insertCell(0);
+
                 versionCell.colSpan = 2;
                 versionCell.classList.add("encounter-version");
                 versionCell.innerHTML = versionName.toUpperCase();
                 versionCell.style.textAlign = "center";
 
                 const versionStyle = games[versionName];
-
                 if (versionStyle) {
                   versionCell.style.backgroundColor = versionStyle.bg;
                   versionCell.style.color = versionStyle.fontColor;
                   versionCell.style.borderColor = versionStyle.border;
                 }
-
                 versionCell.style.borderRadius = "10px";
               }
 
-              // Adiciona a location_area à tabela correspondente
+              // Adds the version to the table/ Adds the location_area to the corresponding table
               const encounterTable = versionTables[versionName];
-
               const locationRow = encounterTable.insertRow();
               const locationCell = locationRow.insertCell(0);
+
               locationCell.colSpan = 2;
               locationCell.classList.add("encounter-location");
-
               locationCell.innerHTML = formatText(encounter.location_area.name);
               locationCell.style.borderTop = "5px solid rgb(83 83 83)";
               locationCell.style.borderRight = "0px";
@@ -889,7 +893,7 @@ const renderPokemon = async function (pokemon) {
             }
           });
         });
-        // Adiciona as tabelas ao container
+        // Add tables to the container
         Object.values(versionTables).forEach((table) => {
           encountersContainer.appendChild(table);
         });
@@ -899,7 +903,7 @@ const renderPokemon = async function (pokemon) {
       }
       console.log("Encounters Loaded");
     }
-    // Info
+    // INFO
     if (rightDisplayFunction === "info") {
       const infoTable = document.createElement("table");
       infoTable.classList.add("info-table");
@@ -938,25 +942,36 @@ const renderPokemon = async function (pokemon) {
       nameCellLabel.style.borderTopLeftRadius = "10px";
       nameCellLabel.style.borderBottomLeftRadius = "10px";
       // Info Name Row nameData
-      nameCellData.colSpaname
+      nameCellData.colSpaname;
       nameCellData.classList.add("info-nameData");
       nameCellData.style.borderTopRightRadius = "10px";
       nameCellData.style.borderBottomRightRadius = "10px";
       nameCellData.style.borderTopLeftRadius = "0px";
       nameCellData.style.borderBottomLeftRadius = "0px";
+      nameCellData.innerHTML =
+        pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1);
 
-      nameCellData.innerHTML = pokemonData.name;
 
-      // Cria e estiliza a célula de tipo
+      // Create and style the type cell
       const pokemonTypes = pokemonData.types.map((type) => type.type.name);
       createTypeCell(infoTable, pokemonTypes);
+
+      // get the first type of the pokemon
+      const firstType = pokemonTypes[0];
+      // get the type style
+      const typeColor = types[firstType];
+      // apply the style to the info table
+      if (infoTable) {
+        infoTable.style.backgroundColor = typeColor.bg;
+        infoTable.style.border = `2px solid ${typeColor.border}`;
+      }
 
       // Resists
       const resistRowTitle = infoTable.insertRow();
       const resistTitleLabel = resistRowTitle.insertCell(0);
       resistTitleLabel.colSpan = 2;
       resistTitleLabel.innerHTML = "Type effectiveness";
-      resistTitleLabel.style.textAlign = "center"
+      resistTitleLabel.style.textAlign = "center";
       resistTitleLabel.style.borderTopRightRadius = "10px";
       resistTitleLabel.style.borderBottomRightRadius = "10px";
       resistTitleLabel.style.borderTopLeftRadius = "10px";
@@ -968,11 +983,8 @@ const renderPokemon = async function (pokemon) {
         return damageRelations;
       });
 
-      // Aguarda todas as chamadas assíncronas serem concluídas
+      // Wait for all asynchronous calls to complete
       const damageRelationsResults = await Promise.all(damageRelationsPromises);
-
-      console.log(damageRelationsResults);
-
       const extractTypesByDamageMultiplier = (
         damageRelationsResults,
         damageMultiplier
@@ -985,14 +997,14 @@ const renderPokemon = async function (pokemon) {
               if (!types.has(type.name)) {
                 types.set(type.name, { name: type.name, multiplier: 2 });
               } else {
-                // Se o tipo já existir, soma os multiplicadores
+                // If the type already exists, add the multipliers
                 types.get(type.name).multiplier += 2;
               }
             });
           }
         });
 
-        // Remover tipos que estão ao mesmo tempo em "double damage from" e "half damage from"
+        // Remove types that are both "double damage from" and "half damage from"
         if (
           damageMultiplier === "half_damage_from" ||
           damageMultiplier === "double_damage_from"
@@ -1012,7 +1024,7 @@ const renderPokemon = async function (pokemon) {
           });
         }
 
-        // Remover tipos que estão em "no damage from" de "half damage from" e "double damage from"
+        // Remove types that are in "no damage from" from "half damage from" and "double damage from"
         if (
           damageMultiplier === "half_damage_from" ||
           damageMultiplier === "double_damage_from"
@@ -1037,20 +1049,17 @@ const renderPokemon = async function (pokemon) {
         damageRelationsResults,
         "double_damage_from"
       );
-      console.log("double damage from", doubleDamageFrom);
 
       const immuneTo = extractTypesByDamageMultiplier(
         damageRelationsResults,
         "no_damage_from"
       );
-      console.log("no damage from", immuneTo);
 
       const halfDamageFrom = extractTypesByDamageMultiplier(
         damageRelationsResults,
         "half_damage_from"
       );
-      console.log("half damage from", halfDamageFrom)
-      
+
       createDamageRelationCell(
         infoTable,
         "Weak To:",
@@ -1069,6 +1078,53 @@ const renderPokemon = async function (pokemon) {
         halfDamageFrom,
         damageRelationsResults
       );
+
+      // Abilities
+
+      const abilitiesRowTitle = infoTable.insertRow();
+      const abilitiesTitleLabel = abilitiesRowTitle.insertCell(0);
+      abilitiesTitleLabel.colSpan = 2;
+      abilitiesTitleLabel.innerHTML = "Abilities";
+      abilitiesTitleLabel.style.textAlign = "center";
+      abilitiesTitleLabel.style.borderTopRightRadius = "10px";
+      abilitiesTitleLabel.style.borderBottomRightRadius = "10px";
+      abilitiesTitleLabel.style.borderTopLeftRadius = "10px";
+      abilitiesTitleLabel.style.borderBottomLeftRadius = "10px";
+
+      // Extract the abilities from the pokemon data
+      const pokemonAbilities = pokemonData.abilities.map(
+        (abilityObject) => abilityObject.ability
+      );
+      // Extract the hidden abilities data from the pokemon data
+      const pokemonHiddenAbility = pokemonData.abilities.map(
+        (abilityObject) => abilityObject
+      );
+      console.log(pokemonHiddenAbility);
+
+      // Função para buscar os detalhes de todas as habilidades
+      const fetchAllAbilities = async function () {
+        // Mapeia sobre o array de detalhes das habilidades e busca os detalhes de cada uma
+        const abilitiesDetails = await Promise.all(
+          pokemonAbilities.map(async (ability) => {
+            const abilityData = await fetchAbility(ability.name);
+            return abilityData;
+          })
+        );
+
+        return abilitiesDetails;
+      };
+
+      // Chama a função para buscar os detalhes de todas as habilidades
+      fetchAllAbilities().then((abilitiesDetails) => {
+        console.log(abilitiesDetails); // Agora, você pode acessar abilitiesDetails aqui dentro do bloco then
+
+        // Chama addAbilityRowsToTable dentro do bloco then, onde abilitiesDetails está definido
+        addAbilityRowsToTable(
+          infoTable,
+          abilitiesDetails,
+          pokemonHiddenAbility
+        );
+      });
 
       // Append the table to the container
       infoContainer.appendChild(infoTable);

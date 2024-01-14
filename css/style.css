@@ -488,6 +488,7 @@ main {
   border-radius: 10px;
   border: 2px solid #999999;
   font-size: 15px;
+  padding: 5px;
 }
 
 .info-name {
@@ -510,7 +511,9 @@ main {
 
 .info-table td {
   background-color: #ffffff;
-  color: #0645ad;
+  
+  /*color: #0645ad;*/
+
 
   /*border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;*/
