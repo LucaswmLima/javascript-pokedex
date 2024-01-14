@@ -37,112 +37,112 @@ const types = {
   normal: {
     name: "Normal",
     bg: "#A8A878",
-    border: "#6D6D4E"
+    border: "#6D6D4E",
   },
   fire: {
     name: "Fire",
     bg: "#F08030",
-    border: "#9C531F"
+    border: "#9C531F",
   },
   fighting: {
     name: "Fighting",
     bg: "#C03028",
-    border: "#7D1F1A"
+    border: "#7D1F1A",
   },
   water: {
     name: "Water",
     bg: "#6890F0",
-    border: "#445E9C"
+    border: "#445E9C",
   },
   flying: {
     name: "Flying",
     bg: "#A890F0",
-    border: "#6D5E9C"
+    border: "#6D5E9C",
   },
   grass: {
     name: "Grass",
     bg: "#78C850",
-    border: "#4E8234"
+    border: "#4E8234",
   },
   poison: {
     name: "Poison",
     bg: "#A040A0",
-    border: "#682A68"
+    border: "#682A68",
   },
   electric: {
     name: "Electric",
     bg: "#F8D030",
-    border: "#A1871F"
+    border: "#A1871F",
   },
   ground: {
     name: "Ground",
     bg: "#E0C068",
-    border: "#927D44"
+    border: "#927D44",
   },
   psychic: {
     name: "Psychic",
     bg: "#F85888",
-    border: "#A13959"
+    border: "#A13959",
   },
   rock: {
     name: "Rock",
     bg: "#B8A038",
-    border: "#786824"
+    border: "#786824",
   },
   ice: {
     name: "Ice",
     bg: "#98D8D8",
-    border: "#638D8D"
+    border: "#638D8D",
   },
   bug: {
     name: "Bug",
     bg: "#A8B820",
-    border: "#6D7815"
+    border: "#6D7815",
   },
   dragon: {
     name: "Dragon",
     bg: "#7038F8",
-    border: "#4924A1"
+    border: "#4924A1",
   },
   ghost: {
     name: "Ghost",
     bg: "#705898",
-    border: "#493963"
+    border: "#493963",
   },
   dark: {
     name: "Dark",
     bg: "#705848",
-    border: "#49392F"
+    border: "#49392F",
   },
   steel: {
     name: "Steel",
     bg: "#B8B8D0",
-    border: "#787887"
+    border: "#787887",
   },
   fairy: {
     name: "Fairy",
     bg: "#EE99AC",
-    border: "#9B6470"
+    border: "#9B6470",
   },
   stellar: {
     name: "Stellar",
     bg: "#7CC7B2",
-    border: "#518174"
+    border: "#518174",
   },
   "???": {
     name: "???",
     bg: "#7CC7B2",
-    border: "#518174"
+    border: "#518174",
   },
   undefined: {
     name: "???",
     bg: "#7CC7B2",
-    border: "#518174"
+    border: "#518174",
   },
   null: {
     name: "???",
     bg: "#7CC7B2",
-    border: "#518174"
+    border: "#518174",
   },
 };
 
@@ -393,7 +393,7 @@ initializePokedex();
 const playAudio = (url) => {
   new Audio(url).play();
   Audio.volume = 0.2;
-}
+};
 
 // Format text function and change " - " for space
 const formatText = (text) => {
@@ -404,7 +404,7 @@ const formatText = (text) => {
   const formattedText = formattedWords.join(" ");
 
   return formattedText;
-}
+};
 
 // Search a pokemon in API and return the pokemon data
 const fetchPokemon = async function (pokemon) {
@@ -438,15 +438,17 @@ const fetchType = async function (type) {
   }
 };
 
-  // Search a ability in API ans return the ability data
-  const fetchAbility = async function (ability) {
-    const APIResponse = await fetch(`https://pokeapi.co/api/v2/ability/${ability}`);
+// Search a ability in API ans return the ability data
+const fetchAbility = async function (ability) {
+  const APIResponse = await fetch(
+    `https://pokeapi.co/api/v2/ability/${ability}`
+  );
 
-    if (APIResponse.status == 200) {
-      const abilityData = await APIResponse.json();
-      return abilityData;
-    }
-  };
+  if (APIResponse.status == 200) {
+    const abilityData = await APIResponse.json();
+    return abilityData;
+  }
+};
 
 // Create and style the type cell
 const createTypeCell = (infoTable, pokemonTypes) => {
@@ -520,7 +522,12 @@ const createDamageRelationCell = (infoTable, title, damageRelationTypes) => {
       } else if (title === "Resistant To:") {
         multiplierText = type.multiplier === 2 ? "½x" : "¼x";
       } else {
-        multiplierText = type.multiplier === 2 ? "2x" : type.multiplier === 4 ? "4x" : `${type.multiplier}x`;
+        multiplierText =
+          type.multiplier === 2
+            ? "2x"
+            : type.multiplier === 4
+            ? "4x"
+            : `${type.multiplier}x`;
       }
 
       const typeNameCapitalized =
@@ -546,7 +553,7 @@ const createDamageRelationCell = (infoTable, title, damageRelationTypes) => {
   // Adiciona um estilo adicional para o background da célula
   row.style.background = types[damageRelationTypes[0]?.name]?.bg; // Use a cor do primeiro tipo para o background
   row.style.borderRadius = "10px";
-}
+};
 
 const addAbilityRowsToTable = (
   infoTable,
@@ -617,10 +624,9 @@ const resetScreenData = () => {
   encountersContainer.innerHTML = "";
   movesContainer.innerHTML = "";
   infoContainer.innerHTML = "";
+};
 
-}
-
-// Apply the search changed on screen
+// Apply the search changed on screen (MAIN FUNCTION)
 const renderPokemon = async function (pokemon) {
   // Reset Screen Data every search
   resetScreenData();
@@ -629,7 +635,6 @@ const renderPokemon = async function (pokemon) {
 
   // Primary render function
   if (pokemonData) {
-
     // IMAGE
     pokemonImage.style.display = "block";
     pokemonStatsContainer.style.display = "block";
@@ -639,10 +644,22 @@ const renderPokemon = async function (pokemon) {
     */
     pokemonName.innerHTML = "";
     pokemonNumber.innerHTML = "";
-    pokemonImage.src =
+    const pokemonSpriteAnimated =
       pokemonData["sprites"]["versions"]["generation-v"]["black-white"][
         "animated"
       ]["front_default"];
+    const pokemonSpriteStatic =
+      pokemonData["sprites"]["versions"]["generation-vii"][
+        "ultra-sun-ultra-moon"
+      ]["front_default"];
+    if (pokemonSpriteAnimated) {
+      pokemonImage.classList.remove("static");
+      pokemonImage.src = pokemonSpriteAnimated;
+    } else {
+      pokemonImage.classList.add("static");
+      pokemonImage.src = pokemonSpriteStatic;
+    }
+
     input.value = "";
     serchedPokemon = pokemonData.id;
 
@@ -651,8 +668,8 @@ const renderPokemon = async function (pokemon) {
       // get the type style
       const typeColor = types[pokemonData.types[0].type.name];
       // apply the style to the status table
-        pokemonStatsContainer.style.backgroundColor = typeColor.bg;
-        pokemonStatsContainer.style.border = `2px solid ${typeColor.border}`;      
+      pokemonStatsContainer.style.backgroundColor = typeColor.bg;
+      pokemonStatsContainer.style.border = `2px solid ${typeColor.border}`;
 
       hpBar.style["width"] =
         Math.round((pokemonData["stats"]["0"]["base_stat"] * 100) / 255) + "%";
@@ -1131,7 +1148,6 @@ const renderPokemon = async function (pokemon) {
 
       // Call the function to fetch details of all skills
       fetchAllAbilities().then((abilitiesDetails) => {
-
         addAbilityRowsToTable(
           infoTable,
           abilitiesDetails,

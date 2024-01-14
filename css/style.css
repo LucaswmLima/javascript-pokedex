@@ -43,6 +43,13 @@ main {
 
 }
 
+.pokemonImage.static {
+  bottom: 41%;
+  left: 17%;
+  height: 25%;
+
+}
+
 .pokemonData {
   position: absolute;
   width: 100%;
@@ -635,8 +642,14 @@ body {
 }
 
 .pokemonImage{
-  left:40%;
-  height: 15%;
+  left: 37%;
+  height: 20%;
+}
+
+.pokemonImage.static{
+  bottom: 41%;
+  left:35%;
+  height: 25%;
 }
 
 .rightDisplayStatus,
