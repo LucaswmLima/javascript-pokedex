@@ -134,7 +134,8 @@ Downloading and installing Node.js and npm
 - [x] Pokémon moves section
 - [x] Pokémon info section
 - [x] Pokémon encounter section
-- [ ] Pokémon abilities in info section
+- [x] Pokémon abilities in info section
+- [ ] Pokémon moves filter
 
 See the [open issues](https://github.com/lucaswmlima/javascript-pokedex/issues) for a full list of proposed features (and known issues).
 
