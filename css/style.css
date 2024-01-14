@@ -254,10 +254,29 @@ main {
       /* gap: 5%; */
       padding-bottom: 1%;
       justify-content: space-between;
+      background-color: #fff;
+      padding: 5px;
+      border: 2px solid white;
+}
+
+/* Estilo para a primeira .statFull */
+.statFull:first-child {
+  /* Seus estilos aqui */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+/* Estilo para a última .statFull */
+.statFull:nth-child(6) {
+  /* Seus estilos aqui */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .pokemonStats{
   margin-top: 4%;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .total{
@@ -434,9 +453,8 @@ main {
 
 .encounter-table td {
   background-color: #ffffff;
-  color: #0645ad;
-
   /*border-top-right-radius: 10px;
+  color: #0645ad;
   border-bottom-right-radius: 10px;*/
 }
 

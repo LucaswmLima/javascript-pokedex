@@ -607,10 +607,12 @@ const addAbilityRowsToTable = (
 
 // Reset Screen Data
 const resetScreenData = () => {
+  /*
   pokemonName.innerHTML = "Loading...";
   encountersContainer.innerHTML = "Loading...";
   movesContainer.innerHTML = "Loading...";
   infoContainer.innerHTML = "Loading...";
+  */
   pokemonNumber.innerHTML = "";
   encountersContainer.innerHTML = "";
   movesContainer.innerHTML = "";
@@ -631,8 +633,12 @@ const renderPokemon = async function (pokemon) {
     // IMAGE
     pokemonImage.style.display = "block";
     pokemonStatsContainer.style.display = "block";
+    /*
     pokemonName.innerHTML = pokemonData.name;
     pokemonNumber.innerHTML = pokemonData.id + "&nbsp-";
+    */
+    pokemonName.innerHTML = "";
+    pokemonNumber.innerHTML = "";
     pokemonImage.src =
       pokemonData["sprites"]["versions"]["generation-v"]["black-white"][
         "animated"
@@ -642,6 +648,12 @@ const renderPokemon = async function (pokemon) {
 
     // STATS
     if (rightDisplayFunction === "status") {
+      // get the type style
+      const typeColor = types[pokemonData.types[0].type.name];
+      // apply the style to the status table
+        pokemonStatsContainer.style.backgroundColor = typeColor.bg;
+        pokemonStatsContainer.style.border = `2px solid ${typeColor.border}`;      
+
       hpBar.style["width"] =
         Math.round((pokemonData["stats"]["0"]["base_stat"] * 100) / 255) + "%";
       atkBar.style["width"] =
