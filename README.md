@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+![image](https://github.com/LucaswmLima/javascript-pokedex/assets/82186618/ed82bb60-824d-4125-bbbe-fbaebe9f4609)<a name="readme-top"></a>
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -61,7 +61,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://lucaswmlima.github.io/javascript-pokedex/)
+![Product Name Screen Shot][product-screenshot]
+![Product Name Screen Shot][product-screenshot2]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -192,8 +193,8 @@ Lucas William Martins Lima - lucaswilliamml@gmail.com - [LinkedIn][linkedin-url]
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/https://www.linkedin.com/in/lucaswmlima/
 [portfolio-url]: https://portfolio-lucaswilliam.vercel.app/#projects
-[product-screenshot]: https://github.com/LucaswmLima/javascript-pokedex/blob/main/assets/github-images/pokedex-1.png?raw=true8253a548-fd62-4874-afae-c5e6e15c6b47
-[product-screenshot2]: https://github.com/LucaswmLima/javascript-pokedex/blob/main/assets/readme-imgs/3.jpg?raw=true
+[product-screenshot]: https://github.com/LucaswmLima/javascript-pokedex/blob/main/assets/github-images/pokedex1.png?raw=true
+[product-screenshot2]: https://github.com/LucaswmLima/javascript-pokedex/blob/main/assets/github-images/pokedex2.png?raw=true
 [HTML]: https://img.shields.io/badge/HTML-E44D26?style=for-the-badge&logo=html5&logoColor=white
 [HTML-url]: https://developer.mozilla.org/pt-BR/docs/Web/HTML
 [CSS]: https://img.shields.io/badge/CSS-2862E9?style=for-the-badge&logo=css3&logoColor=white
