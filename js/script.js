@@ -32,6 +32,7 @@ const movesContainer = document.getElementById("movesContainer");
 const encountersContainer = document.getElementById("encounterContainer");
 const infoContainer = document.getElementById("infoContainer");
 const loadingAdvise = document.getElementById("loadingAdvise");
+
 // Pokemons types style
 const types = {
   normal: {
@@ -624,7 +625,7 @@ const resetScreenData = () => {
 const renderPokemon = async (pokemon) => {
   // Reset Screen Data every search
   resetScreenData();
-  // fetch the desired pokemon
+  // Fetch the desired pokemon
   const pokemonData = await fetchPokemon(pokemon);
 
   // Primary render function
@@ -632,10 +633,6 @@ const renderPokemon = async (pokemon) => {
     // IMAGE
     pokemonImage.style.display = "block";
     pokemonStatsContainer.style.display = "block";
-    /*
-    pokemonName.innerHTML = pokemonData.name;
-    pokemonNumber.innerHTML = pokemonData.id + "&nbsp-";
-    */
     pokemonName.innerHTML = "";
     pokemonNumber.innerHTML = "";
     const pokemonSpriteAnimated =
@@ -662,12 +659,12 @@ const renderPokemon = async (pokemon) => {
       const loadingTimeout = setTimeout(() => {
         loadingAdvise.style.display = "flex";
       }, 700);
-      // get the type style
+      // Get the type style
       const typeColor = types[pokemonData.types[0].type.name];
-      // apply the style to the status table
+      // Apply the style to the status table
       pokemonStatsContainer.style.backgroundColor = typeColor.bg;
       pokemonStatsContainer.style.border = `2px solid ${typeColor.border}`;
-
+      // Style the status bars
       hpBar.style["width"] =
         Math.round((pokemonData["stats"]["0"]["base_stat"] * 100) / 255) + "%";
       atkBar.style["width"] =
@@ -706,7 +703,6 @@ const renderPokemon = async (pokemon) => {
       const moveList = await Promise.all(
         Object.keys(pokemonData["moves"]).map(async (moveNumber) => {
           const moveName = pokemonData["moves"][moveNumber]["move"]["name"];
-
           const moveData = await fetchMove(moveName);
           const movePower =
             moveData["power"] !== null ? moveData["power"] : "--- ";
@@ -756,9 +752,9 @@ const renderPokemon = async (pokemon) => {
         const moveTable = document.createElement("table");
         moveTable.classList.add("move-table");
 
-        // get the type style
+        // Get the type style
         const typeColor = types[move.moveType];
-        // apply the style to the info table
+        // Apply the style to the info table
         if (moveTable) {
           moveTable.style.backgroundColor = typeColor.bg;
           moveTable.style.border = `2px solid ${typeColor.border}`;
@@ -1007,11 +1003,11 @@ const renderPokemon = async (pokemon) => {
       const pokemonTypes = pokemonData.types.map((type) => type.type.name);
       createTypeCell(infoTable, pokemonTypes);
 
-      // get the first type of the pokemon
+      // Get the first type of the pokemon
       const firstType = pokemonTypes[0];
-      // get the type style
+      // Get the type style
       const typeColor = types[firstType];
-      // apply the style to the info table
+      // Apply the style to the info table
       if (infoTable) {
         infoTable.style.backgroundColor = typeColor.bg;
         infoTable.style.border = `2px solid ${typeColor.border}`;
