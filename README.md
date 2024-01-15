@@ -1,5 +1,3 @@
-![image](https://github.com/LucaswmLima/javascript-pokedex/assets/82186618/ed82bb60-824d-4125-bbbe-fbaebe9f4609)<a name="readme-top"></a>
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
