@@ -766,6 +766,11 @@ main {
   font-size: 10px;
 }
 
+.pokemonStats .total{
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .skills{
   padding-top: 0;
 }
