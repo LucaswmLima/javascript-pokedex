@@ -214,6 +214,26 @@ main {
 
 }
 
+.loadingAdvise{
+  position: absolute;
+  background-color: #ffffff;
+  z-index: 105;
+  left: 69%;
+  bottom: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  align-items: center;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.loadingAdvise .loadingGif{
+  background: url('../assets/icons/spinner.gif') no-repeat center center;
+  background-color: #6890F0;
+}
+
 .buttons {
   position: absolute;
   bottom: 12%;
@@ -629,6 +649,15 @@ body {
   left: 17%;
   height: 37%;
   bottom: 37%;
+}
+
+.stats-container {
+  width: 60%;
+}
+
+.loadingAdvise {
+  left: 35%;
+  bottom: -30%;
 }
 
 .pokedex-container{

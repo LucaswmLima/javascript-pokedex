@@ -31,7 +31,7 @@ const pokemonMoves = document.querySelector(".pokemonMoves");
 const movesContainer = document.getElementById("movesContainer");
 const encountersContainer = document.getElementById("encounterContainer");
 const infoContainer = document.getElementById("infoContainer");
-
+const loadingAdvise = document.getElementById("loadingAdvise");
 // Pokemons types style
 const types = {
   normal: {
@@ -614,12 +614,6 @@ const addAbilityRowsToTable = (
 
 // Reset Screen Data
 const resetScreenData = () => {
-  /*
-  pokemonName.innerHTML = "Loading...";
-  encountersContainer.innerHTML = "Loading...";
-  movesContainer.innerHTML = "Loading...";
-  infoContainer.innerHTML = "Loading...";
-  */
   pokemonNumber.innerHTML = "";
   encountersContainer.innerHTML = "";
   movesContainer.innerHTML = "";
@@ -665,6 +659,9 @@ const renderPokemon = async function (pokemon) {
 
     // STATS
     if (rightDisplayFunction === "status") {
+      const loadingTimeout = setTimeout(() => {
+        loadingAdvise.style.display = "flex";
+      }, 700);
       // get the type style
       const typeColor = types[pokemonData.types[0].type.name];
       // apply the style to the status table
@@ -696,9 +693,15 @@ const renderPokemon = async function (pokemon) {
         pokemonData["stats"]["3"]["base_stat"] +
         pokemonData["stats"]["4"]["base_stat"] +
         pokemonData["stats"]["5"]["base_stat"];
+      clearTimeout(loadingTimeout);
+      loadingAdvise.style.display = "none";
     }
+
     // MOVES
     if (rightDisplayFunction === "moves") {
+      const loadingTimeout = setTimeout(() => {
+        loadingAdvise.style.display = "flex";
+      }, 700);
       // Moves API Call
       const moveList = await Promise.all(
         Object.keys(pokemonData["moves"]).map(async (moveNumber) => {
@@ -747,6 +750,7 @@ const renderPokemon = async function (pokemon) {
           };
         })
       );
+      loadingAdvise.style.display = "none";
       // Move Table Render
       moveList.forEach((move) => {
         const moveTable = document.createElement("table");
@@ -864,10 +868,15 @@ const renderPokemon = async function (pokemon) {
 
         // Append the table to the container
         movesContainer.appendChild(moveTable);
+        clearTimeout(loadingTimeout);
+        loadingAdvise.style.display = "none";
       });
     }
     // ENCOUNTER
     if (rightDisplayFunction === "encounter") {
+      const loadingTimeout = setTimeout(() => {
+        loadingAdvise.style.display = "flex";
+      }, 700);
       const pokemonEncounter = await fetchPokemon(`${pokemon}/encounters`);
       const versionTables = {};
       // Enconter Table Render
@@ -930,15 +939,24 @@ const renderPokemon = async function (pokemon) {
         });
         // Add tables to the container
         Object.values(versionTables).forEach((table) => {
+          clearTimeout(loadingTimeout);
+          loadingAdvise.style.display = "none";
           encountersContainer.appendChild(table);
+          
         });
       } else {
+        clearTimeout(loadingTimeout);
+        loadingAdvise.style.display = "none";
         encountersContainer.innerHTML = "Trade or Evolve";
         encountersContainer.style.textAlign = "center";
+        
       }
     }
     // INFO
     if (rightDisplayFunction === "info") {
+      const loadingTimeout = setTimeout(() => {
+        loadingAdvise.style.display = "flex";
+      }, 700);
       const infoTable = document.createElement("table");
       infoTable.classList.add("info-table");
 
@@ -1156,6 +1174,8 @@ const renderPokemon = async function (pokemon) {
       });
 
       // Append the table to the container
+      clearTimeout(loadingTimeout);
+      loadingAdvise.style.display = "none";
       infoContainer.appendChild(infoTable);
     }
   } else {
