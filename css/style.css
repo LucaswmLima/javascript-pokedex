@@ -8,6 +8,7 @@
 }
 
 body {
+  position: fixed;
   text-align: center;
   background: linear-gradient(to bottom, #6ab7f5, #fff);
   height: 100vh;
@@ -21,6 +22,18 @@ main {
   padding: 15px;
   position: relative;
 
+}
+
+.background-container{
+  background: linear-gradient(to bottom, #6ab7f5, #fff);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: -101;
 }
 
 
@@ -306,12 +319,10 @@ main {
 .statFull {
       width: 100%;
       display: flex;
-      /* gap: 5%; */
-      padding-bottom: 1%;
+      gap: 5%;
       justify-content: space-between;
       background-color: #fff;
       padding: 5px;
-      border: 2px solid white;
 }
 
 /* Estilo para a primeira .statFull */
@@ -329,7 +340,6 @@ main {
 }
 
 .pokemonStats{
-  margin-top: 4%;
   padding: 10px;
   border-radius: 10px;
 }
@@ -638,9 +648,6 @@ main {
 
 /* Media query para telas menores que 600px */
 @media only screen and (max-width: 600px) {
-body {
-    height: 130vh;
-  }
 
 .pokedex-normal{
     display: none;
@@ -751,6 +758,25 @@ body {
   overflow-wrap: break-word
 }
 
+.info-table{
+  font-size: 12px;
+}
+
+.pokemonStats{
+  font-size: 10px;
+}
+
+.skills{
+  padding-top: 0;
+}
+
+.hp,.atk,.spAtk,.def,.spDef,.speed{
+  height: 12px;
+}
+
+.statFull{
+  padding: 4px;
+}
 
 
 }
