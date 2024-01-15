@@ -373,7 +373,7 @@ const games = {
 // Initialize pokedex with the correct menus
 let serchedPokemon = 1;
 let rightDisplayFunction = "info";
-const initializePokedex = function () {
+const initializePokedex = () => {
   buttonStats.classList.remove("buttonRightActive");
   buttonMoves.classList.remove("buttonRightActive");
   buttonEncounter.classList.remove("buttonRightActive");
@@ -407,7 +407,7 @@ const formatText = (text) => {
 };
 
 // Search a pokemon in API and return the pokemon data
-const fetchPokemon = async function (pokemon) {
+const fetchPokemon = async (pokemon) => {
   const APIResponse = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${pokemon}`
   );
@@ -419,7 +419,7 @@ const fetchPokemon = async function (pokemon) {
 };
 
 // Search a move in API and return the move data
-const fetchMove = async function (pokemon) {
+const fetchMove = async (pokemon) => {
   const APIResponse = await fetch(`https://pokeapi.co/api/v2/move/${pokemon}`);
 
   if (APIResponse.status == 200) {
@@ -429,7 +429,7 @@ const fetchMove = async function (pokemon) {
 };
 
 // Search a type in API ans return dmg relations
-const fetchType = async function (type) {
+const fetchType = async (type) => {
   const APIResponse = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
 
   if (APIResponse.status == 200) {
@@ -439,7 +439,7 @@ const fetchType = async function (type) {
 };
 
 // Search a ability in API ans return the ability data
-const fetchAbility = async function (ability) {
+const fetchAbility = async (ability) => {
   const APIResponse = await fetch(
     `https://pokeapi.co/api/v2/ability/${ability}`
   );
@@ -621,7 +621,7 @@ const resetScreenData = () => {
 };
 
 // Apply the search changed on screen (MAIN FUNCTION)
-const renderPokemon = async function (pokemon) {
+const renderPokemon = async (pokemon) => {
   // Reset Screen Data every search
   resetScreenData();
   // fetch the desired pokemon
@@ -1190,7 +1190,7 @@ const renderPokemon = async function (pokemon) {
 renderPokemon(serchedPokemon);
 
 // Get the search input
-const search = function (event) {
+const search = (event) => {
   event.preventDefault();
   renderPokemon(input.value.toLowerCase());
   playAudio("./assets/sounds/buttonClickSound.mp3");
@@ -1198,7 +1198,7 @@ const search = function (event) {
 form.addEventListener("submit", search);
 
 // Get the prev pokemon
-const prevPokemon = function () {
+const prevPokemon = () => {
   playAudio("./assets/sounds/buttonClickSound.mp3");
   if (serchedPokemon > 1) {
     serchedPokemon -= 1;
@@ -1208,7 +1208,7 @@ const prevPokemon = function () {
 buttonPrev.addEventListener("click", prevPokemon);
 
 // Get the next pokemon
-const nextPokemon = function () {
+const nextPokemon = () => {
   playAudio("./assets/sounds/buttonClickSound.mp3");
   serchedPokemon += 1;
   renderPokemon(serchedPokemon);
@@ -1216,7 +1216,7 @@ const nextPokemon = function () {
 buttonNext.addEventListener("click", nextPokemon);
 
 // Change right display function to status
-const rightDisplayFunctionStatus = function () {
+const rightDisplayFunctionStatus = () => {
   playAudio("./assets/sounds/buttonClickSound.mp3");
   buttonStats.classList.add("buttonRightActive");
   buttonMoves.classList.remove("buttonRightActive");
@@ -1236,7 +1236,7 @@ const rightDisplayFunctionStatus = function () {
 buttonStats.addEventListener("click", rightDisplayFunctionStatus);
 
 // Change right display function to info
-const rightDisplayFunctionInfo = function () {
+const rightDisplayFunctionInfo = () => {
   playAudio("./assets/sounds/buttonClickSound.mp3");
   buttonStats.classList.remove("buttonRightActive");
   buttonMoves.classList.remove("buttonRightActive");
@@ -1256,7 +1256,7 @@ const rightDisplayFunctionInfo = function () {
 buttonAbility.addEventListener("click", rightDisplayFunctionInfo);
 
 // Change right display function to moves
-const rightDisplayFunctionMoves = function () {
+const rightDisplayFunctionMoves = () => {
   playAudio("./assets/sounds/buttonClickSound.mp3");
   buttonMoves.classList.add("buttonRightActive");
   buttonStats.classList.remove("buttonRightActive");
@@ -1276,7 +1276,7 @@ const rightDisplayFunctionMoves = function () {
 buttonMoves.addEventListener("click", rightDisplayFunctionMoves);
 
 // Change right display function to encounter
-const rightDisplayFunctionEncounter = function () {
+const rightDisplayFunctionEncounter = () => {
   playAudio("./assets/sounds/buttonClickSound.mp3");
   buttonEncounter.classList.add("buttonRightActive");
   buttonStats.classList.remove("buttonRightActive");
